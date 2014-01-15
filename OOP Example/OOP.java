@@ -11,7 +11,7 @@ public class OOP {
 		kaas.printNaam();
 		soep.printNaam();
 		
-		kaas.naam = "stroop kaas";
+		kaas.naam = "kanker-kaas";
 
 		kaas.printNaam();
 		soep.printNaam();
