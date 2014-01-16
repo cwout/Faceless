@@ -1,0 +1,50 @@
+Programming conventions:
+
+-Writing everything in english
+
+-Comments:
+	Class javadoc:
+	/**
+	 * description
+	 * @author: 
+	 */ 
+
+	// "text"
+
+	/*
+	 * text
+	 * text
+	 */
+
+	/**
+	 * text
+	 * text
+	 * author: author
+	 */
+
+	 always above the context that needs comments
+	 always use javadoc with classes, fields and functions
+
+Naming conventions:
+	simple variables: camelCase starting with lower case
+	class names: CamelCase starting with upper case
+	Constants: all upper case, underscore multiple words
+
+	public variables: camelCase starting with lower case
+	private/protected variables: _camelCase starting with underscore, and lower case
+
+	functions: camelCase starting with lower case
+
+	always mention the scope (public private protected)
+
+	getters and setters: get_variables (lower case), set_variables (lower case)
+						 always on the end of the class
+
+	constructor: always use the this keyword
+
+	local variables: declare them when most needed
+
+	braces {} : always at the same line of that block definition
+				always use them (even with if's with 1 condition)
+
+	try to avoid the use of static variables
