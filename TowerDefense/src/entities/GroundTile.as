@@ -1,5 +1,6 @@
 package entities 
 {
+	import entities.map.Map;
 	import net.flashpunk.Entity;
 	
 	/**
@@ -13,13 +14,13 @@ package entities
 		public var speed : int = 10;
 		
 		//the x position of this tile on the map
-		public var x : int = 0;
+		public var gridX : int = 0;
 		
 		//the y position of this tile on the map
-		public var y : int = 0;
+		public var gridY : int = 0;
 		
 		//the height of this tile on the map
-		public var height : int = 0;
+		public var groundHeight : int = 0;
 		
 		//whether or not enemies can move through this tile
 		public var passable : Boolean = true;
@@ -29,6 +30,13 @@ package entities
 		
 		//the map on which this is located
 		public var map : Map = null;
+			
+		
+		public function GroundTile(x : int = 0, y : int = 0)
+		{
+			this.x = x;
+			this.y = y;
+		}
 		
 	}
 

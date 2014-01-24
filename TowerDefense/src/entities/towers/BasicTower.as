@@ -20,6 +20,7 @@ package entities.towers
 		
 		override public function added():void 
 		{
+			super.added();
 			image = new Image(Assets.BASICTOWER);
 			this.graphic = image;
 			image.centerOrigin();
@@ -39,7 +40,6 @@ package entities.towers
 				world.add(new BasicBall(this.x + 30, this.y, image.angle));
 			}
 		}
-		
 	}
 
 }
