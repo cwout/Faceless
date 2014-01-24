@@ -9,7 +9,7 @@ package utils.pathfinding
 	{
 		public var cost:int = 10;
 		public var toNode:GroundTile;
-		public var fromNode:GroundTile;
+		public var fromNode:NodeRecord;
 		
 		public function Connection() 
 		{

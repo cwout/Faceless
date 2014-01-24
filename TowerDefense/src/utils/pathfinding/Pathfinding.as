@@ -3,6 +3,8 @@ package utils.pathfinding
 	import entities.GroundTile;
 	
 	/**
+	 * TODO:
+	 * fix damn bugs
 	 * @author Axel Faes
 	 */
 	public class Pathfinding 
@@ -23,17 +25,17 @@ package utils.pathfinding
 		/**
 		 * get all connections from a specific tile
 		 */ 
-		private static function getConnections(current:GroundTile):Vector.<Connection>{
+		private static function getConnections(current:NodeRecord):Vector.<Connection>{
 			var open:Vector.<Connection> = new Vector.<Connection>;
 			var con:Connection = new Connection();
 			con.fromNode = current;
-			con.toNode = current.getLeftTile();
+			con.toNode = current.node.getLeftTile();
 			open.push(con);
-			con.toNode = current.getRightTile();
+			con.toNode = current.node.getRightTile();
 			open.push(con);
-			con.toNode = current.getTopTile();
+			con.toNode = current.node.getTopTile();
 			open.push(con);
-			con.toNode = current.getBottomTile();
+			con.toNode = current.node.getBottomTile();
 			open.push(con);
 			
 			return open;
@@ -54,8 +56,8 @@ package utils.pathfinding
 		/**
 		 * remove an specific element from a vector
 		 */
-		public static function find(open:Vector.<NodeRecord>, current:GroundTile):void {
-			var found:GroundTile = null;
+		public static function find(open:Vector.<NodeRecord>, current:GroundTile):NodeRecord {
+			var found:NodeRecord = null;
 			for (var i:int = 0; i < open.length; i++) {
 				if (open[i].node == current) {
 					found = open[i];
@@ -68,10 +70,10 @@ package utils.pathfinding
 		/**
 		 * remove an specific element from a vector
 		 */
-		public static function contains(open:Vector.<NodeRecord>, current:NodeRecord):void {
+		public static function contains(open:Vector.<NodeRecord>, current:GroundTile):Boolean {
 			var found:Boolean = false;
 			for (var i:int = 0; i < open.length; i++) {
-				if (open[i] == current) {
+				if (open[i].node == current) {
 					found = true;
 					break;
 				}
@@ -83,6 +85,7 @@ package utils.pathfinding
 		 * Function to calculate the dijkstra path
 		 */
 		public static function pathDijkstra(graph:Vector.< GroundTile > , begin:GroundTile, end:GroundTile):Path {
+			var startrecord:NodeRecord;
 			startrecord = new NodeRecord();
 			startrecord.node = begin;
 			
@@ -113,7 +116,7 @@ package utils.pathfinding
 					else if (contains(open, endNode)) {
 						endNodeRecord = find(open, endNode);
 						
-						if (endNodeRecord.cost <= endNodeCost) {
+						if (endNodeRecord.costSoFar <= endNodeCost) {
 							continue;
 						}
 					}
@@ -122,7 +125,7 @@ package utils.pathfinding
 						endNodeRecord.node = endNode;
 					}
 
-					endNodeRecord.cost = endNodeCost
+					endNodeRecord.costSoFar = endNodeCost
 					endNodeRecord.connection = connection
 					
 					if (!contains(open, endNode)) {
@@ -130,7 +133,7 @@ package utils.pathfinding
 					}
 				}
 				
-				remove(open, current);
+				removeElem(open, current);
 				closed.push(current);
 			}	
 			
@@ -141,8 +144,8 @@ package utils.pathfinding
 				var path:Path = new Path();
 				
 				while (current.node != begin) {
-					path.path.push(current.node)
-					current = current.connection.fromNode()
+					path.path.push(current.node);
+					current = current.connection.fromNode;
 				}
 
 				path.path.reverse();
