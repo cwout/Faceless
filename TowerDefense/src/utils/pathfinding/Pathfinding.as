@@ -3,19 +3,10 @@ package utils.pathfinding
 	import entities.GroundTile;
 	
 	/**
-	 * ToDo: 
-		connection
-	 *  debugging
-	 * 
 	 * @author Axel Faes
 	 */
 	public class Pathfinding 
 	{
-		public function Pathfinding() 
-		{
-			
-		}
-		
 		/**
 		 * finds the smallest element in a node record list
 		*/
@@ -32,12 +23,18 @@ package utils.pathfinding
 		/**
 		 * get all connections from a specific tile
 		 */ 
-		private static function getConnections(current:GroundTile):Vector.<GroundTile> {
-			var open:Vector.<GroundTile> = new Vector.<GroundTile>;
-			open.push(current.getLeftTile());
-			open.push(current.getRightTile());
-			open.push(current.getTopTile());
-			open.push(current.getBottomTile());
+		private static function getConnections(current:GroundTile):Vector.<Connection>{
+			var open:Vector.<Connection> = new Vector.<Connection>;
+			var con:Connection = new Connection();
+			con.fromNode = current;
+			con.toNode = current.getLeftTile();
+			open.push(con);
+			con.toNode = current.getRightTile();
+			open.push(con);
+			con.toNode = current.getTopTile();
+			open.push(con);
+			con.toNode = current.getBottomTile();
+			open.push(con);
 			
 			return open;
 		}
@@ -93,16 +90,18 @@ package utils.pathfinding
 			open.push(startrecord);
 			var closed:Vector.<NodeRecord> = new Vector.<NodeRecord>;
 			
+			var current:NodeRecord;
+			
 			while (open.length > 0) {
-				var current:NodeRecord = smallestElement(open);
+				current = smallestElement(open);
 				
-				if (current.node == goal) {
+				if (current.node == end) {
 					break;
 				}
 				
-				var connections:Vector.<GroundTile> = getConnections(current);
+				var connections:Vector.<Connection> = getConnections(current);
 				
-				for each(var connection:GroundTile in connections) {
+				for each(var connection:Connection in connections) {
 					var endNode:GroundTile = connection.toNode;
 					var endNodeCost:int = current.costSoFar + connection.cost;
 					var endNodeRecord:NodeRecord;
@@ -141,8 +140,11 @@ package utils.pathfinding
 			else {
 				var path:Path = new Path();
 				
-				path = current.connection;
-				
+				while (current.node != begin) {
+					path.path.push(current.node)
+					current = current.connection.fromNode()
+				}
+
 				path.path.reverse();
 				return path;
 			}
