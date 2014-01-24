@@ -1,5 +1,6 @@
 package worlds 
 {
+	import entities.towers.BasicTower;
 	import net.flashpunk.World;
 	
 	/**
@@ -11,7 +12,13 @@ package worlds
 		
 		public function TestWorld() 
 		{
-			
+
+		}
+		
+		override public function begin():void 
+		{
+			var tower = new BasicTower;
+			add(tower);
 		}
 		
 	}

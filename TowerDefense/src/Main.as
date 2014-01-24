@@ -1,6 +1,8 @@
 package 
 {
 	import net.flashpunk.Engine;
+	import net.flashpunk.FP;
+	import worlds.TestWorld;
 	
 	/**
 	 * ...
@@ -17,6 +19,7 @@ package
 		override public function init():void 
 		{
 			super.init();
+			FP.world = new TestWorld;
 		}
 	}
 	
