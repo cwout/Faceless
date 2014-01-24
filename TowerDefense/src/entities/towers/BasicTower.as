@@ -11,10 +11,11 @@ package entities.towers
 	 */
 	public class BasicTower extends Entity 
 	{
-		
+		public var image : Image;
 		override public function added():void 
 		{
-			this.graphic = new Image(Assets.BASICTOWER);
+			image = new Image(Assets.BASICTOWER);
+			this.graphic = image;
 		}
 	}
 
