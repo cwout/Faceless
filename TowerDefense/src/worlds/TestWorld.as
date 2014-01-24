@@ -28,6 +28,7 @@ package worlds
 		}
 		
 		override public function update():void {
+			super.update();
 			/*
 			var begin:GroundTile = map.mapData[0];
 			var end:GroundTile = map.mapData[9];
