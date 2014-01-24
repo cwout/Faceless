@@ -16,6 +16,7 @@ package entities.towers
 	public class BasicTower extends GroundTile
 	{
 		public var image : Image;
+		
 		override public function added():void 
 		{
 			image = new Image(Assets.BASICTOWER);
@@ -32,6 +33,7 @@ package entities.towers
 				
 			}
 		}
+		
 	}
 
 }
