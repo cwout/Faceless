@@ -1,5 +1,6 @@
 package  
 {
+	import flash.display.InteractiveObject;
 	/**
 	 * ...
 	 * @author Olivier de Schaetzen
