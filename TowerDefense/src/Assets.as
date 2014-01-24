@@ -9,6 +9,7 @@ package
 	{
 		
 		[Embed(source = "assets/BasicTower.png")] public static const BASICTOWER : Class;
+		[Embed(source = "assets/BasicBall.png")] public static const BASICBALL : Class;
 		
 	}
 

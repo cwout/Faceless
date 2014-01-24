@@ -17,7 +17,7 @@ package worlds
 		
 		override public function begin():void 
 		{
-			var tower = new BasicTower;
+			var tower:BasicTower = new BasicTower;
 			add(tower);
 		}
 		
