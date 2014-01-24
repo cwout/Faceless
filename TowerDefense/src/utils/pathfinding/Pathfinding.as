@@ -1,9 +1,13 @@
 package utils.pathfinding 
 {
-	import utils.map.GroundTile;
+	import entities.GroundTile;
+	
 	/**
-	 * ...
-	 * @author Olivier de Schaetzen en Axel Faes
+	 * ToDo: 
+		connection
+	 *  debugging
+	 * 
+	 * @author Axel Faes
 	 */
 	public class Pathfinding 
 	{
@@ -49,6 +53,34 @@ package utils.pathfinding
 				}
 			}
 		}
+		
+		/**
+		 * remove an specific element from a vector
+		 */
+		public static function find(open:Vector.<NodeRecord>, current:GroundTile):void {
+			var found:GroundTile = null;
+			for (var i:int = 0; i < open.length; i++) {
+				if (open[i].node == current) {
+					found = open[i];
+					break;
+				}
+			}
+			return found;
+		}
+		
+		/**
+		 * remove an specific element from a vector
+		 */
+		public static function contains(open:Vector.<NodeRecord>, current:NodeRecord):void {
+			var found:Boolean = false;
+			for (var i:int = 0; i < open.length; i++) {
+				if (open[i] == current) {
+					found = true;
+					break;
+				}
+			}
+			return found;
+		}
 		 
 		/**
 		 * Function to calculate the dijkstra path
@@ -70,42 +102,33 @@ package utils.pathfinding
 				
 				var connections:Vector.<GroundTile> = getConnections(current);
 				
-				for each(var connections:GroundTile in connections) {
+				for each(var connection:GroundTile in connections) {
+					var endNode:GroundTile = connection.toNode;
+					var endNodeCost:int = current.costSoFar + connection.cost;
+					var endNodeRecord:NodeRecord;
 					
-					# Get the cost estimate for the end node
-					37 endNode = connection.getToNode()
-					38 endNodeCost = current.costSoFar +
-					39 connection.getCost()
-					40
-					41 # Skip if the node is closed
-					42 if closed.contains(endNode): continue
-					43
-					44 # .. or if it is open and we’ve found a worse
-					218 Chapter 4 Pathfinding
-					45 # route
-					46 else if open.contains(endNode):
-					47
-					48 # Here we find the record in the open list
-					49 # corresponding to the endNode.
-					50 endNodeRecord = open.find(endNode)
-					51
-					52 if endNodeRecord.cost <= endNodeCost:
-					53 continue
-					54
-					55 # Otherwise we know we’ve got an unvisited
-					56 # node, so make a record for it
-					57 else:
-					58 endNodeRecord = new NodeRecord()
-					59 endNodeRecord.node = endNode
-					60
-					61 # We’re here if we need to update the node
-					62 # Update the cost and connection
-					63 endNodeRecord.cost = endNodeCost
-					64 endNodeRecord.connection = connection
-					65
-					66 # And add it to the open list
-					67 if not open.contains(endNode):
-					68 open += endNodeRecord
+					if (contains(closed, endNode)) {
+						continue
+					}
+					
+					else if (contains(open, endNode)) {
+						endNodeRecord = find(open, endNode);
+						
+						if (endNodeRecord.cost <= endNodeCost) {
+							continue;
+						}
+					}
+					else {
+						endNodeRecord = new NodeRecord();
+						endNodeRecord.node = endNode;
+					}
+
+					endNodeRecord.cost = endNodeCost
+					endNodeRecord.connection = connection
+					
+					if (!contains(open, endNode)) {
+						open.push(endNodeRecord);
+					}
 				}
 				
 				remove(open, current);
