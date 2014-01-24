@@ -6,7 +6,7 @@ package utils.pathfinding
 	 */
 	public class NodeRecord 
 	{
-		public var connection:Vector.<MapNode> = new Vector.<MapNode>;
+		public var connection:Vector.<GroundTile> = new Vector.<GroundTile>;
 		public var costSoFar:Number = 0;
 			
 		public function NodeRecord() 
