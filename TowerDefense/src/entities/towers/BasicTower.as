@@ -25,7 +25,7 @@ package entities.towers
 		
 		override public function added():void 
 		{
-			
+			this.layer = -5000;
 			image = new Image(Assets.BASICTOWER);
 			this.graphic = image;
 			image.centerOrigin();
