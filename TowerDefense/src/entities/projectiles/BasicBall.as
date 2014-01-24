@@ -15,13 +15,20 @@ package entities.projectiles
 	public class BasicBall extends Entity 
 	{
 		public var image: Image;
+		public var speed: Number;
+		public var angle: Number;
 		
-		public function BasicBall(x : int, y : int, angle : Number)
+		public function BasicBall(x : int, y : int, angle : Number, speed: Number)
 		{
-			angle *= FP.RAD;
+			this.speed = speed;
+			this.angle = angle *= FP.RAD;
+
+			var temp: Number;
 			
-			this.x = x;
-			this.y = y;
+			temp = Math.cos(this.angle);
+			this.x = x + (speed * temp);
+			temp = Math.sin(this.angle);
+			this.y = y - (speed * temp);
 		}
 		
 		override public function added():void 
