@@ -10,38 +10,37 @@ package entities.map
 	 */
 	public class Map extends Entity
 	{
-		/**
-		 * this vector contains all the groundtiles
-		 */
+		//this vector contains all the groundtiles	
 		public var mapData : Vector.<GroundTile>;
+		//the width of the map
 		public var mapWidth : int = 0;
+		//the height of the map
 		public var mapHeight : int = 0;
 		
-		
-		public function Map() 
+		override public function added():void 
 		{
+			initializeMap(30,30);
 		}
 		
 		/**
 		 * initializes the map
 		 */
-		public function initializeMap(width : int, height : int)
+		public function initializeMap(width : int, height : int):void
 		{
 			this.mapWidth = width;
 			this.mapHeight = height;
 			
-			for (var i : int = 0 ; i < width ; i++) {
-				for (var k : int = 0 ; k < height ; k++) {
+			mapData = new Vector.<GroundTile>(width * height);
+			for (var i : int = 0 ; i < mapWidth ; i++) {
+				for (var k : int = 0 ; k < mapHeight ; k++) {
 					mapData[i + k * mapWidth] = new GroundTile(this, i, k);
+					world.add(mapData[i + k * mapWidth]);
 				}
 			}
 		}
 		
 		/**
 		 * returns the groundtile at the given position
-		 * @param	x
-		 * @param	y
-		 * @return
 		 */
 		public function getGroundTile(x : int, y : int):GroundTile
 		{

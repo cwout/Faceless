@@ -1,5 +1,6 @@
 package worlds 
 {
+	import entities.map.Map;
 	import entities.towers.BasicTower;
 	import net.flashpunk.World;
 	
@@ -17,6 +18,7 @@ package worlds
 		
 		override public function begin():void 
 		{
+			add(new Map());
 			var tower:BasicTower = new BasicTower;
 			add(tower);
 		}
