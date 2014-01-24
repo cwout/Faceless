@@ -42,7 +42,7 @@ package entities.towers
 			}
 			
 			if (Input.pressed(Key.SPACE)) {
-				world.add(new BasicBall(image.scaledWidth / 2 , this.x, this.y, image.angle, 200));
+				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, 500));
 			}
 		}
 	}
