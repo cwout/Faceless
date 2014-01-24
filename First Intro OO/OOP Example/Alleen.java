@@ -1,5 +1,3 @@
-
-
 public class Alleen {
 	public static String mijnZin;
 	
