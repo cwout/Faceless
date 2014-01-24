@@ -27,18 +27,18 @@ package entities.map
 		 */
 		public function initializeMap(width : int, height : int)
 		{
-			this.width = width;
-			this.height = height;
+			this.mapWidth = width;
+			this.mapHeight = height;
 			
 			for (var i : int = 0 ; i < width ; i++) {
 				for (var k : int = 0 ; k < height ; k++) {
-					mapData[i + k * width] = new GroundTile(i, k);
+					mapData[i + k * mapWidth] = new GroundTile(this, i, k);
 				}
 			}
 		}
 		
 		/**
-		 * returns 
+		 * returns the groundtile at the given position
 		 * @param	x
 		 * @param	y
 		 * @return
@@ -46,7 +46,7 @@ package entities.map
 		public function getGroundTile(x : int, y : int):GroundTile
 		{
 			if (x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return null;
-			
+			return mapData[x + y * mapWidth];
 		}
 		
 	}

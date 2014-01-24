@@ -32,10 +32,31 @@ package entities
 		public var map : Map = null;
 			
 		
-		public function GroundTile(x : int = 0, y : int = 0)
+		public function GroundTile(map : Map, x : int = 0, y : int = 0)
 		{
-			this.x = x;
-			this.y = y;
+			this.gridX = x;
+			this.gridY = y;
+			this.map = map;
+		}
+		
+		public function getLeftTile():GroundTile
+		{
+			return map.getGroundTile(gridX - 1, gridY);
+		}
+		
+		public function getRightTile():GroundTile
+		{
+			return map.getGroundTile(gridX + 1, gridY);
+		}
+		
+		public function getTopTile():GroundTile
+		{
+			return map.getGroundTile(gridX, gridY - 1);
+		}
+		
+		public function getBottomTile():GroundTile
+		{
+			return map.getGroundTile(gridX, gridY + 1);
 		}
 		
 	}
