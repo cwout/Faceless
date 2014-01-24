@@ -1,4 +1,4 @@
-package entities.pathfinding 
+package utils.pathfinding 
 {
 	import net.flashpunk.utils.Input;
 	/**
