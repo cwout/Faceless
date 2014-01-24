@@ -37,7 +37,7 @@ package entities.towers
 			}
 			
 			if (Input.pressed(Key.SPACE)) {
-				world.add(new BasicBall(this.x + 30, this.y, image.angle));
+				world.add(new BasicBall(this.x + 30, this.y, image.angle, 50));
 			}
 		}
 	}

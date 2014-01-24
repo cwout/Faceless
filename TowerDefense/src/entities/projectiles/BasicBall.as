@@ -42,7 +42,10 @@ package entities.projectiles
 		
 		override public function update():void 
 		{
-			this.x += (300 * FP.elapsed);
+			temp = Math.cos(this.angle);
+			this.x += (this.speed * temp) * FP.elapsed;
+			temp = Math.sin(this.angle);
+			this.y -= (this.speed * temp) * FP.elapsed;
 		}
 	}
 
