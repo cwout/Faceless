@@ -18,17 +18,18 @@ package entities.projectiles
 		public var speed: Number;
 		public var angle: Number;
 		
-		public function BasicBall(x : int, y : int, angle : Number, speed: Number)
+		public function BasicBall(width: int, x : int, y : int, angle : Number, speed: Number)
 		{
+			var temp: Number;
+			temp = Math.cos(this.angle);
+			this.x = x + (width * temp);
+			temp = Math.sin(this.angle);
+			this.y = y - (width * temp);
 			this.speed = speed;
 			this.angle = angle *= FP.RAD;
 
-			var temp: Number;
-			
-			temp = Math.cos(this.angle);
-			this.x = x + (speed * temp);
-			temp = Math.sin(this.angle);
-			this.y = y - (speed * temp);
+			this.x = x;
+			this.y = y;
 		}
 		
 		override public function added():void 
@@ -42,10 +43,11 @@ package entities.projectiles
 		
 		override public function update():void 
 		{
+			var temp: Number;
 			temp = Math.cos(this.angle);
 			this.x += (this.speed * temp) * FP.elapsed;
 			temp = Math.sin(this.angle);
-			this.y -= (this.speed * temp) * FP.elapsed;
+			this.y += (this.speed * temp) * FP.elapsed;
 		}
 	}
 

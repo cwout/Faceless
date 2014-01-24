@@ -18,9 +18,14 @@ package entities.towers
 	{
 		public var image : Image;
 		
+		public function BasicTower() 
+		{
+			super(null, 0, 0);
+		}
+		
 		override public function added():void 
 		{
-			super.added();
+			
 			image = new Image(Assets.BASICTOWER);
 			this.graphic = image;
 			image.centerOrigin();
@@ -37,7 +42,7 @@ package entities.towers
 			}
 			
 			if (Input.pressed(Key.SPACE)) {
-				world.add(new BasicBall(this.x + 30, this.y, image.angle, 50));
+				world.add(new BasicBall(image.scaledWidth / 2 , this.x, this.y, image.angle, 200));
 			}
 		}
 	}
