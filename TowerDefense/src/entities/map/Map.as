@@ -33,19 +33,28 @@ package entities.map
 		
 		public function parseMap(map : Class):void
 		{
+			//the xml file that is being parsed
 			var xml : XML = FP.getXML(map);
 			
+			//we initialize the mapdata
 			mapData = new Vector.<GroundTile>(parseInt(xml.@width)/40 * parseInt(xml.@height)/40 );		
 			
+			//for each tile in the xml file
 			for each (var tile : XML in xml.MapData.tile) {
+					//we get the x and y coordinates
 					var tilex : int = parseInt(tile.@x);
 					var tiley : int = parseInt(tile.@y);
 					
+					//we create a new groundtile
 					var groundTile : GroundTile = new GroundTile(this, tilex, tiley);
 					
+					//we set their height
 					groundTile.groundHeight = parseInt(tile.@id);
 					
+					//we add them to the world
 					world.add(groundTile);
+					
+					//and put them in the array
 					mapData[tilex + tiley * mapWidth] = groundTile;
 				
 			}
