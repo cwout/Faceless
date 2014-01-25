@@ -16,6 +16,7 @@ package entities.testenemy
 	{
 		public var image : Image;
 		public var speed : int = 100;
+		public var angle : Number = 180 * FP.RAD;
 		
 		override public function added():void 
 		{
@@ -29,15 +30,26 @@ package entities.testenemy
 		
 		override public function update():void 
 		{
-			this.x -= speed * FP.elapsed;
+			
+			move();
 			
 			if (Input.pressed(Key.R)) {
 				this.x = 800;
+			}
+			
+			if (Input.check(Key.F)) {
+				this.angle += (5 * FP.RAD);
 			}
 		}
 		
 		public function isInRange(x : int, y : int):Boolean {
 			return(true);
+		}
+		
+		private function move():void 
+		{
+			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
+			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
 		}
 	}
 

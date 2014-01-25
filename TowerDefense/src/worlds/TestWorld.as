@@ -34,7 +34,7 @@ package worlds
 		override public function update():void {
 			super.update();
 			if (FP.distance(tower.x, tower.y, testenemy.x, testenemy.y) <= tower.range)
-				tower.shoot(testenemy.x, testenemy.y);
+				tower.shoot(testenemy.x, testenemy.y, testenemy.speed, testenemy.angle);
 			/*
 			var begin:GroundTile = map.mapData[0];
 			var end:GroundTile = map.mapData[9];
