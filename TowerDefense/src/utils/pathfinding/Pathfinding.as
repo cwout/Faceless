@@ -27,23 +27,30 @@ package utils.pathfinding
 		 */ 
 		private static function getConnections(current:NodeRecord):Vector.<Connection>{
 			var open:Vector.<Connection> = new Vector.<Connection>;
-			var con:Connection = new Connection();
-			con.fromNode = current;
+
 			if (current.node.getLeftTile()) {
+				var con:Connection = new Connection();
+				con.fromNode = current;
 				con.toNode = current.node.getLeftTile();
 				open.push(con);
 			}
 			if (current.node.getRightTile()) {
-				con.toNode = current.node.getRightTile();
-				open.push(con);
+				var con1:Connection = new Connection();
+				con1.fromNode = current;
+				con1.toNode = current.node.getRightTile();
+				open.push(con1);
 			}
 			if (current.node.getTopTile()) {
-				con.toNode = current.node.getTopTile();
-				open.push(con);
+				var con2:Connection = new Connection();
+				con2.fromNode = current;
+				con2.toNode = current.node.getTopTile();
+				open.push(con2);
 			}
 			if (current.node.getBottomTile()) {
-				con.toNode = current.node.getBottomTile();
-				open.push(con);
+				var con3:Connection = new Connection();
+				con3.fromNode = current;
+				con3.toNode = current.node.getBottomTile();
+				open.push(con3);
 			}
 			
 			return open;
@@ -161,6 +168,7 @@ package utils.pathfinding
 				path.path.reverse();
 				return path;
 			}
+			
 
 		}
 		
