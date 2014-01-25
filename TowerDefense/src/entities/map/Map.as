@@ -46,10 +46,7 @@ package entities.map
 					var tiley : int = parseInt(tile.@y);
 					
 					//we create a new groundtile
-					var groundTile : GroundTile = new GroundTile(this, tilex, tiley);
-					
-					//we set their height
-					groundTile.groundHeight = parseInt(tile.@id);
+					var groundTile : GroundTile = new GroundTile(this, tilex, tiley, parseInt(tile.@id));
 					
 					//we add them to the world
 					world.add(groundTile);

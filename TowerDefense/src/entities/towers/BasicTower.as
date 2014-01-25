@@ -29,7 +29,7 @@ package entities.towers
 		//Constructor
 		public function BasicTower() 
 		{
-			super(null, 0, 0);
+			super(null, 0, 0, 0);
 		}
 		
 		override public function added():void 
