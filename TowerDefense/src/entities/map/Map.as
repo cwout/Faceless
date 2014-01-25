@@ -3,6 +3,7 @@ package entities.map
 	import entities.GroundTile;
 	import entities.towers.BasicTower;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	/**
 	 * ...
@@ -19,30 +20,34 @@ package entities.map
 		
 		override public function added():void 
 		{
-			initializeMap(30,30);
+			initializeMap();
 		}
 		
 		/**
 		 * initializes the map
 		 */
-		public function initializeMap(width : int, height : int):void
+		public function initializeMap():void
 		{
-			this.mapWidth = width;
-			this.mapHeight = height;
+			parseMap(Assets.LEVEL_TESTLEVEL);
+		}
+		
+		public function parseMap(map : Class):void
+		{
+			var xml : XML = FP.getXML(map);
 			
-			/**
-			 * we populate the array of groundtiles with new tiles
-			 */
-			mapData = new Vector.<GroundTile>(width * height);
-			for (var i : int = 0 ; i < mapWidth ; i++) {
-				for (var k : int = 0 ; k < mapHeight ; k++) {
-					var groundTile : GroundTile = new GroundTile(this, i, k);
+			mapData = new Vector.<GroundTile>(parseInt(xml.@width)/40 * parseInt(xml.@height)/40 );		
+			
+			for each (var tile : XML in xml.MapData.tile) {
+					var tilex : int = parseInt(tile.@x);
+					var tiley : int = parseInt(tile.@y);
 					
-					groundTile.groundHeight = 0;
+					var groundTile : GroundTile = new GroundTile(this, tilex, tiley);
+					
+					groundTile.groundHeight = parseInt(tile.@id);
 					
 					world.add(groundTile);
-					mapData[i + k * mapWidth] = groundTile;
-				}
+					mapData[tilex + tiley * mapWidth] = groundTile;
+				
 			}
 		}
 		
