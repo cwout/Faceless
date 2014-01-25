@@ -36,11 +36,8 @@ package entities.towers
 		{
 			//Toren op de voorgrond van het scherm zetten
 			this.layer = -5000;
-<<<<<<< HEAD
 			//De image van de toren inladen
-=======
 			super.added();
->>>>>>> 7552d02458cbc2fe3d12f7ff4ad2e9c9913c8076
 			image = new Image(Assets.BASICTOWER);
 			//De image koppellen
 			this.graphic = image;
@@ -49,13 +46,8 @@ package entities.towers
 			
 			//Cordinaten van de toren initialiseren (gewoon voor test purposes)
 			this.x = 300;
-<<<<<<< HEAD
 			this.y = 300;
-			
-			
-=======
-			this.y = 300;			
->>>>>>> 7552d02458cbc2fe3d12f7ff4ad2e9c9913c8076
+
 		}
 		
 		override public function update():void 
@@ -108,8 +100,8 @@ package entities.towers
 			time = distance / ballspeed;
 			
 			//De verwachte x en y waarden verhogen a.d.h.v. enemyHoek * enemySpeed * de tijd die de bal er over moet doen
-			x += ((objectSpeed + 10) * (Math.cos(objectAngle))) * time;
-			y += ((objectSpeed + 10) * (Math.sin(objectAngle))) * time;
+			x += ((objectSpeed) * (Math.cos(objectAngle))) * time;
+			y += ((objectSpeed) * (Math.sin(objectAngle))) * time;
 			
 			
 			//Als het object zich rechts van ons bevind 
