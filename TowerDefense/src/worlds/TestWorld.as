@@ -42,6 +42,7 @@ package worlds
 			if (FP.distance(tower.x, tower.y, testenemy.x, testenemy.y) <= tower.range)
 				tower.shoot(testenemy.x, testenemy.y, testenemy.speed, testenemy.angle);
 			
+			//testing pathfinding
 			if (!done) {
 				done = true;
 				var begin:GroundTile = map.getGroundTile(0, 0);

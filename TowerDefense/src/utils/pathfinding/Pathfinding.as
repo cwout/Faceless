@@ -4,7 +4,7 @@ package utils.pathfinding
 	
 	/**
 	 * TODO:
-	 * fix damn bugs
+	 * add upgrades (height difference)
 	 * @author Axel Faes
 	 */
 	public class Pathfinding 
