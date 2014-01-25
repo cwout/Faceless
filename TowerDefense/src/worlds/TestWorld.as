@@ -36,19 +36,18 @@ package worlds
 			if (FP.distance(tower.x, tower.y, testenemy.x, testenemy.y) <= tower.range)
 				tower.shoot(testenemy.x, testenemy.y, testenemy.speed, testenemy.angle);
 			
-			/*Hier zit de error, verwijder deze comment om het uit te voeren
 			var begin:GroundTile = map.getGroundTile(0, 0);
 			var end:GroundTile = map.getGroundTile(0, 5);
 			
 			var path:Path = Pathfinding.pathDijkstra(map.mapData, begin, end);
-			/*
+			
 			for each (var g:GroundTile in path.path) {
 				trace(g.gridX);
 				trace("+");
 				trace(g.gridY);
 				trace("\n");
 			}
-			*/
+			
 			
 			
 		}

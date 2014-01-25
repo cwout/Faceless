@@ -46,8 +46,6 @@ package utils.pathfinding
 				open.push(con);
 			}
 			
-			trace(open.length);
-			
 			return open;
 		}
 		
