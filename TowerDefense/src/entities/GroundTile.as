@@ -46,7 +46,7 @@ package entities
 		
 		override public function added():void 
 		{
-			this.graphic = Image.createRect(40, 40, 0x00FF00 - 0x002000 * (1+groundHeight) , 1);
+			this.graphic = Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
 		}
 		
 		public function getLeftTile():GroundTile
