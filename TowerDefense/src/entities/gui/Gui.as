@@ -9,6 +9,7 @@ package entities.gui
 	{
 		
 		private static var funcP: Function = clickedMenuSmall;
+		public static var useCustomCursor: Boolean = false;
 		
 		/**
 		 * Call this method to initialize the GUI
@@ -20,7 +21,10 @@ package entities.gui
 			FP.world.add(new GuiTrigger());
 			
 			//initilize the cursor
-			FP.world.add(new CustomCursor());
+			if (useCustomCursor)
+			{
+				FP.world.add(new CustomCursor());
+			}
 			
 		}
 		
