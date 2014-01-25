@@ -2,6 +2,7 @@ package entities
 {
 	import entities.map.Map;
 	import net.flashpunk.Entity;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	
 	/**
@@ -39,9 +40,13 @@ package entities
 			this.gridY = y;
 			this.map = map;
 			
-			this.graphic = Image.createRect(32, 32, 0xFFFFFF * Math.random(), 1);
 			this.x = gridX * 32;
 			this.y = gridY * 32;
+		}
+		
+		override public function added():void 
+		{
+			this.graphic = Image.createRect(32, 32, 0x00FF00 - 0x002000 * (1+height) , 1);
 		}
 		
 		public function getLeftTile():GroundTile
