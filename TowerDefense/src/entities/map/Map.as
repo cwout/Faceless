@@ -30,11 +30,18 @@ package entities.map
 			this.mapWidth = width;
 			this.mapHeight = height;
 			
+			/**
+			 * we populate the array of groundtiles with new tiles
+			 */
 			mapData = new Vector.<GroundTile>(width * height);
 			for (var i : int = 0 ; i < mapWidth ; i++) {
 				for (var k : int = 0 ; k < mapHeight ; k++) {
-					mapData[i + k * mapWidth] = new GroundTile(this, i, k);
-					world.add(mapData[i + k * mapWidth]);
+					var groundTile : GroundTile = new GroundTile(this, i, k);
+					
+					groundTile.groundHeight = 0;
+					
+					world.add(groundTile);
+					mapData[i + k * mapWidth] = groundTile;
 				}
 			}
 		}
