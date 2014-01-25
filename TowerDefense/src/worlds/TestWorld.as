@@ -8,6 +8,7 @@ package worlds
 	import utils.pathfinding.Path;
 	import utils.pathfinding.Pathfinding;
 	import net.flashpunk.FP;
+	import entities.gui.Gui;
 	
 	/**
 	 * ...
@@ -32,6 +33,8 @@ package worlds
 			add(tower);
 			
 			add(testenemy);
+			
+			Gui.init();
 		}
 		
 		override public function update():void {
