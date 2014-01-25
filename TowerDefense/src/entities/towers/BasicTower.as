@@ -25,11 +25,8 @@ package entities.towers
 		
 		override public function added():void 
 		{
-<<<<<<< HEAD
 			this.layer = -5000;
-=======
 			super.added();
->>>>>>> ground is being drawn
 			image = new Image(Assets.BASICTOWER);
 			this.graphic = image;
 			image.centerOrigin();
