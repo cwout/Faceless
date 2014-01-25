@@ -29,14 +29,24 @@ package utils.pathfinding
 			var open:Vector.<Connection> = new Vector.<Connection>;
 			var con:Connection = new Connection();
 			con.fromNode = current;
-			con.toNode = current.node.getLeftTile();
-			open.push(con);
-			con.toNode = current.node.getRightTile();
-			open.push(con);
-			con.toNode = current.node.getTopTile();
-			open.push(con);
-			con.toNode = current.node.getBottomTile();
-			open.push(con);
+			if (current.node.getLeftTile()) {
+				con.toNode = current.node.getLeftTile();
+				open.push(con);
+			}
+			if (current.node.getRightTile()) {
+				con.toNode = current.node.getRightTile();
+				open.push(con);
+			}
+			if (current.node.getTopTile()) {
+				con.toNode = current.node.getTopTile();
+				open.push(con);
+			}
+			if (current.node.getBottomTile()) {
+				con.toNode = current.node.getBottomTile();
+				open.push(con);
+			}
+			
+			trace(open.length);
 			
 			return open;
 		}
@@ -138,9 +148,11 @@ package utils.pathfinding
 			}	
 			
 			if (current.node != end) {
+				trace("found nothing");
 				return null;
 			}
 			else {
+				trace("found path");
 				var path:Path = new Path();
 				
 				while (current.node != begin) {
