@@ -2,6 +2,7 @@ package entities.towers
 {
 	import entities.GroundTile;
 	import entities.projectiles.BasicBall;
+	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
@@ -16,8 +17,16 @@ package entities.towers
 	 */
 	public class BasicTower extends GroundTile
 	{
+		//Range van de toren
+		public var range: int = 200;
+		//De snelheid van de bal die wordt afgevuurd
+		public var ballspeed: int = 500;
+		//De fire cooldown
+		public var cooldown: int = 0;
+		
 		public var image : Image;
 		
+		//Constructor
 		public function BasicTower() 
 		{
 			super(null, 0, 0);
@@ -25,24 +34,72 @@ package entities.towers
 		
 		override public function added():void 
 		{
+			//Toren op de voorgrond van het scherm zetten
 			this.layer = -5000;
+			//De image van de toren inladen
 			image = new Image(Assets.BASICTOWER);
+			//De image koppellen
 			this.graphic = image;
+			//Het centrum zetten al centrum van de image
 			image.centerOrigin();
+			
+			//Cordinaten van de toren initialiseren (gewoon voor test purposes)
 			this.x = 300;
 			this.y = 300;
+			
 			
 		}
 		
 		override public function update():void 
 		{
-			if (Input.check(Key.LEFT)) {
+		
+			//Test Purposes
+			if (Input.check(Key.A)) {
 				image.angle += 5;
-				
+			}
+			if (Input.check(Key.E)) {
+				image.angle -= 5;
 			}
 			
-			if (Input.pressed(Key.SPACE)) {
-				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, 500));
+			if (Input.check(Key.LEFT)) {
+				this.x -= 220 * FP.elapsed;
+			}
+			
+			if (Input.check(Key.RIGHT)) {
+				this.x += 220 * FP.elapsed;
+			}
+			
+			if (Input.check(Key.UP)) {
+				this.y -= 220 * FP.elapsed;
+			}
+			
+			if (Input.check(Key.DOWN)) {
+				this.y += 220 * FP.elapsed;
+			}
+			
+			if (Input.check(Key.SPACE)) {
+				
+			}
+			//End test purposes
+			
+			//De cooldown van de toren verlagen als hij hoger dan 0 is
+			if(this.cooldown > 0)
+				this.cooldown -= 1 * FP.elapsed;
+		}
+		
+		public function shoot(x : int, y : int):void 
+		{
+			//Als het object zich rechts van ons bevind 
+			if(x >= this.x)
+				image.angle = ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
+			//Als het object zich links van ons bevind
+			else
+				image.angle = 180 + ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
+			//Als de toren van zijn cooldown af is mag hij schieten
+			if(this.cooldown == 0) {
+				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed));
+				//Cooldown resetten
+				this.cooldown = 60;
 			}
 		}
 	}
