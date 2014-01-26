@@ -50,11 +50,11 @@ package entities.gui
 			if (Input.mouseReleased)
 			{
 				eventFunction("AddTower");
-				FP.world.recycle(this);
+				FP.world.remove(this);
 			}
 			else if (Input.check(Key.ESCAPE))
 			{
-				FP.world.recycle(this);
+				FP.world.remove(this);
 			}
 		
 		}

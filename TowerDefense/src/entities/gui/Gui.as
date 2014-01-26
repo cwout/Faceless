@@ -76,10 +76,16 @@ package entities.gui
 			}
 			if (idString == "AddTower")
 			{
+				var tempTower: BasicTower;
 				var height: int = 0;
+				var tileX: int = Input.mouseX / References.TILESIZE;
+				var tileY: int = Input.mouseY / References.TILESIZE;
 				if (map.mapData != null)
-					height = map.getGroundTile(Input.mouseX / References.TILESIZE, Input.mouseY / References.TILESIZE).groundHeight;
-				FP.world.add(new BasicTower(null, Input.mouseX / References.TILESIZE, Input.mouseY / References.TILESIZE, height));
+					height = map.getGroundTile(tileX, tileY).groundHeight;
+				tempTower = new BasicTower(null, tileX, tileY, height);
+				FP.world.remove(map.getGroundTile(tileX, tileY));
+				FP.world.add(tempTower);
+				map.setGroundTile(tileX, tileY, tempTower);
 			}
 			
 		}

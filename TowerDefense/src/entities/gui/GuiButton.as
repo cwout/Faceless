@@ -52,7 +52,7 @@ package entities.gui
 					eventFunction(idString);
 				}
 				
-				FP.world.recycle(this);
+				FP.world.remove(this);
 			}
 			else if (!isSelected && collidePoint(x, y, Input.mouseX, Input.mouseY))
 			{

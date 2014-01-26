@@ -56,7 +56,7 @@ package entities.gui
 			//delete the menu
 			if (Input.mouseUp)
 			{
-				FP.world.recycle(this);
+				FP.world.remove(this);
 			}
 			
 		}
