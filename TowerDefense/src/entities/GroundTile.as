@@ -34,19 +34,44 @@ package entities
 		public var map : Map = null;
 			
 		
-		public function GroundTile(map : Map, x : int = 0, y : int = 0)
+		public function GroundTile(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0)
 		{
 			this.gridX = x;
 			this.gridY = y;
 			this.map = map;
+			this.groundHeight = groundHeight;
 			
-			this.x = gridX * 40;
-			this.y = gridY * 40;
+			this.x = gridX * References.TILESIZE + References.TILESIZE / 2;
+			this.y = gridY * References.TILESIZE + References.TILESIZE / 2;
 		}
 		
 		override public function added():void 
 		{
-			this.graphic = Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
+			switch (groundHeight) {
+				case 0:
+					this.graphic = new Image(Assets.ABYSS);
+					break
+				case 1:
+					this.graphic = new Image(Assets.MUD);
+					break
+				case 2:
+					this.graphic = new Image(Assets.MUDGRASS);
+					break
+				case 3:
+					this.graphic = new Image(Assets.GRASS);
+					break;
+				case 4:
+					this.graphic = new Image(Assets.ROCKGRASS);
+					break;
+				case 5:
+					this.graphic = new Image(Assets.ROCK);
+					break;
+				case 6:
+					this.graphic = new Image(Assets.SNOW);
+					break;
+			}
+			(this.graphic as Image).centerOrigin();
+			//(this.graphic as Image).color = 0x222222 + 0x1D1D1D * (1+groundHeight);//Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
 		}
 		
 		public function getLeftTile():GroundTile

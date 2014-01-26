@@ -1,6 +1,7 @@
 package entities.towers 
 {
 	import entities.GroundTile;
+	import entities.map.Map;
 	import entities.projectiles.BasicBall;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
@@ -29,9 +30,9 @@ package entities.towers
 		public var image : Image;
 		
 		//Constructor
-		public function BasicTower() 
+		public function BasicTower(map : Map, x : int, y : int, height : int ) 
 		{
-			super(null, 0, 0);
+			super(map, x, y ,height);
 		}
 		
 		override public function added():void 
@@ -42,13 +43,9 @@ package entities.towers
 			super.added();
 			image = new Image(Assets.BASICTOWER);
 			//De image koppellen
-			this.graphic = image;
+			addGraphic(image);
 			//Het centrum zetten al centrum van de image
 			image.centerOrigin();
-			
-			//Cordinaten van de toren initialiseren (gewoon voor test purposes)
-			this.x = 300;
-			this.y = 300;
 
 		}
 		

@@ -29,6 +29,12 @@ package entities.map
 		public function initializeMap():void
 		{
 			parseMap(Assets.LEVEL_TESTLEVEL);
+			var tile : GroundTile = getGroundTile(4, 4);
+			var tower : BasicTower = new BasicTower(this, 4,4, tile.groundHeight);
+			
+			setGroundTile(4, 4, tower);
+			
+			world.add(tower);
 		}
 		
 		public function parseMap(map : Class):void
@@ -36,8 +42,12 @@ package entities.map
 			//the xml file that is being parsed
 			var xml : XML = FP.getXML(map);
 			
+			//we setup the width and height of the map
+			this.mapWidth = parseInt(xml.@width) / 40;
+			this.mapHeight = parseInt(xml.@height) / 40;
+			
 			//we initialize the mapdata
-			mapData = new Vector.<GroundTile>(parseInt(xml.@width)/40 * parseInt(xml.@height)/40 );		
+			mapData = new Vector.<GroundTile>(mapWidth * mapHeight);		
 			
 			//for each tile in the xml file
 			for each (var tile : XML in xml.MapData.tile) {
@@ -46,10 +56,7 @@ package entities.map
 					var tiley : int = parseInt(tile.@y);
 					
 					//we create a new groundtile
-					var groundTile : GroundTile = new GroundTile(this, tilex, tiley);
-					
-					//we set their height
-					groundTile.groundHeight = parseInt(tile.@id);
+					var groundTile : GroundTile = new GroundTile(this, tilex, tiley, parseInt(tile.@id));
 					
 					//we add them to the world
 					world.add(groundTile);
@@ -67,6 +74,11 @@ package entities.map
 		{
 			if (x < 0 || y < 0 || x >= mapWidth || y >= mapHeight) return null;
 			return mapData[x + y * mapWidth];
+		}
+		
+		public function setGroundTile(x : int, y : int, tile : GroundTile) : void
+		{
+			mapData[x + y * mapWidth] = tile;
 		}
 		
 	}

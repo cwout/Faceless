@@ -6,7 +6,7 @@ package entities.gui
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.masks.Pixelmask;
 	/**
-	 * ...
+	 * Adds a customCursor to the game (cursor will be a frame late thought)
 	 * @author Wout Coenen
 	 */
 	public class CustomCursor extends Entity 
@@ -14,9 +14,7 @@ package entities.gui
 		
 		private var sizeX: int;
 		private var sizeY: int;
-		public var image : Image;
-		
-		[Embed(source = "../../assets/CustomCursor.png")] public const CUSTOMCURSOR : Class;
+		private var image : Image;
 		
 		public function CustomCursor() 
 		{
@@ -28,7 +26,7 @@ package entities.gui
 		override public function added():void
 		{
 			
-			image = new Image(CUSTOMCURSOR);
+			image = new Image(Assets.CUSTOMCURSOR);
 			graphic = image;
 			sizeX = image.height;
 			sizeY = image.width;

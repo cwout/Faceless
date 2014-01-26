@@ -20,8 +20,6 @@ package entities.gui
 		private var buttonCount: int;
 		private var eventFunction: Function;
 		
-		[Embed(source = "../../assets/MenuSmallBg.png")] public const BACKGROUND : Class;
-		
 		public function GuiSmall(triggerSizeX: int, triggerSizeY: int, eventFunction: Function) 
 		{
 			super();
@@ -33,7 +31,7 @@ package entities.gui
 		override public function added() : void
 		{
 			
-			image = new Image(BACKGROUND);
+			image = new Image(Assets.GUISMALLBACKGROUND);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
@@ -42,8 +40,8 @@ package entities.gui
 			y = FP.height - (triggerSizeY + sizeY / 2);
 			layer = -100;
 			
-			//TODO: add buttons
-			buttonCount = 4
+			//Add buttons here, add them in the same way as shown and change the buttonCount
+			buttonCount = 4;
 			var i: int = 1;
 			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
 			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
