@@ -35,6 +35,7 @@ package entities.map
 			setGroundTile(4, 4, tower);
 			
 			world.add(tower);
+			world.remove(tile);
 		}
 		
 		public function parseMap(map : Class):void
