@@ -34,7 +34,7 @@ package worlds
 			
 			add(testenemy);
 			
-			Gui.init();
+			Gui.initWithMap(this.map);
 		}
 		
 		override public function update():void {

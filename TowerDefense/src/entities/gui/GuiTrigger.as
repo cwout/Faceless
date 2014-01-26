@@ -34,7 +34,7 @@ package entities.gui
 			image.centerOrigin();
 			x = FP.width - (sizeX / 2);
 			y = FP.height - (sizeY / 2);
-			layer = -100;
+			layer = References.GUILAYER;
 			mask = new Pixelmask(Assets.GUITRIGGER, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
 			

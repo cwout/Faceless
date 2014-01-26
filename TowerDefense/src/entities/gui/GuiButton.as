@@ -34,7 +34,7 @@ package entities.gui
 			x = posX;
 			y = posY;
 			this.identifier = "GuiButton";
-			layer = -101
+			layer = References.GUILAYER - 1;
 			
 		}
 		

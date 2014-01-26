@@ -1,15 +1,23 @@
 package entities.gui 
 {
+	import entities.map.Map;
 	import net.flashpunk.FP;
+	import net.flashpunk.utils.Input;
+	import entities.towers.BasicTower;
+	import net.flashpunk.World;
+	import worlds.TestWorld;
+	
 	/**
 	 * main Gui-class, every other class has to call this one to interact with the GUI
+	 * To add buttons to the small menu, make a new GuiButton...-class and edit the GuiSmall-class to add them to the screen
 	 * @author Wout Coenen
 	 */
 	public class Gui
 	{
 		
 		private static var funcP: Function = clickedMenuSmall;
-		public static var useCustomCursor: Boolean = false;
+		private static var useCustomCursor: Boolean = false;
+		public static var map: Map;
 		
 		/**
 		 * Call this method to initialize the GUI
@@ -17,6 +25,16 @@ package entities.gui
 		public static function init():void
 		{
 			
+			initWithMap(new Map());
+			
+		}
+		
+		/**
+		 * Call this method to initiliaze the GUI with a specific map
+		 * @param	mapVar the map to be used
+		 */
+		public static function initWithMap(mapVar: Map): void
+		{
 			//initialize the main GUI-button
 			FP.world.add(new GuiTrigger());
 			
@@ -25,6 +43,9 @@ package entities.gui
 			{
 				FP.world.add(new CustomCursor());
 			}
+			
+			//add a var for the map
+			map = mapVar;
 			
 		}
 		
@@ -52,6 +73,13 @@ package entities.gui
 			if (idString == "GuiButtonAddTower")
 			{
 				FP.world.add(new GuiNewTowerOverlay(funcP));
+			}
+			if (idString == "AddTower")
+			{
+				var height: int = 0;
+				if (map.mapData != null)
+					height = map.getGroundTile(Input.mouseX / References.TILESIZE, Input.mouseY / References.TILESIZE).groundHeight;
+				FP.world.add(new BasicTower(null, Input.mouseX / References.TILESIZE, Input.mouseY / References.TILESIZE, height));
 			}
 			
 		}

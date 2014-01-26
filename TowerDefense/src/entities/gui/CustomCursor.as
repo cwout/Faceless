@@ -34,7 +34,7 @@ package entities.gui
 			x = Input.mouseX;
 			y = Input.mouseY;
 			Input.mouseCursor = "hide";
-			layer = -200;
+			layer = References.GUILAYER - 50;
 			setHitbox(1, 1, 0 , 0);
 			
 		}

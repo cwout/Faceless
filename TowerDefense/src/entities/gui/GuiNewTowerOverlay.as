@@ -5,6 +5,7 @@ package entities.gui
 	import net.flashpunk.utils.Input;
 	import flash.display.BlendMode;
 	import net.flashpunk.FP;
+	import net.flashpunk.utils.Key;
 	
 	/**
 	 * Selector for where to place a new tower
@@ -35,7 +36,7 @@ package entities.gui
 			image.centerOrigin();
 			x = Input.mouseX % References.TILESIZE + 20;
 			y = Input.mouseY % References.TILESIZE + 20;
-			layer = -102;
+			layer = References.GUILAYER;
 			setHitbox(-(References.TILESIZE / 2), -(References.TILESIZE / 2), References.TILESIZE, References.TILESIZE);
 			
 		}
@@ -51,7 +52,10 @@ package entities.gui
 				eventFunction("AddTower");
 				FP.world.recycle(this);
 			}
-			//TODO: add escape functionality
+			else if (Input.check(Key.ESCAPE))
+			{
+				FP.world.recycle(this);
+			}
 		
 		}
 		

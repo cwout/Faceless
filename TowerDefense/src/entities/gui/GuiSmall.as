@@ -38,7 +38,7 @@ package entities.gui
 			image.centerOrigin();
 			x = FP.width - (triggerSizeX + sizeX / 2);
 			y = FP.height - (triggerSizeY + sizeY / 2);
-			layer = -100;
+			layer = References.GUILAYER;
 			
 			//Add buttons here, add them in the same way as shown and change the buttonCount
 			buttonCount = 4;
