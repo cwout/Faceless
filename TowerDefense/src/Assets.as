@@ -27,6 +27,14 @@ package
 		[Embed(source="assets/mudgrass.png")] public static const MUDGRASS : Class;
 		[Embed(source="assets/abyss.png")] public static const ABYSS : Class;
 		
+		//GUI GRAPHICS
+		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;
+		[Embed(source = "assets/MenuSmallBg.png")] public static const GUISMALLBACKGROUND : Class;
+		[Embed(source = "assets/CustomCursor.png")] public static const CUSTOMCURSOR : Class;
+		//GUI BUTTON GRAPHICS
+		[Embed(source = "assets/MenuButtonAddTower.png")] public static const GUISMALLBUTTONADDTOWER: Class;
+		[Embed(source = "assets/MenuButtonAddTowerPressed.png")] public static const GUISMALLBUTTONADDTOWER_PRESSED: Class;
+		
 		//----------the sounds----------
 		
 		//----------the levels----------

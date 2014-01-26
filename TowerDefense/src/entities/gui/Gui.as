@@ -36,10 +36,15 @@ package entities.gui
 		public static function triggerMenuSmall(triggerSizeX: int, triggerSizeY: int): void
 		{
 			
+			//add the small menu to the screen
 			FP.world.add(new GuiSmall(triggerSizeX, triggerSizeY, funcP));
 			
 		}
 		
+		/**
+		 * triggered when a button has been clicked on the small menu
+		 * @param	idString the String-identifier of the clicked button
+		 */
 		public static function clickedMenuSmall(idString: String): void
 		{
 			trace (idString);

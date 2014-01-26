@@ -6,7 +6,7 @@ package entities.gui
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	/**
-	 * ...
+	 * Base-class for buttons, other buttons should extend this class
 	 * @author Wout Coenen
 	 */
 	public class GuiButton extends Entity
@@ -20,6 +20,12 @@ package entities.gui
 		protected var idString: String;
 		protected var isSelected: Boolean = false;
 		
+		/**
+		 * 
+		 * @param	eventFunction The function to be called when the button is clicked
+		 * @param	posX The X-position where the center of the button has te be
+		 * @param	posY The Y-position where the center of the button has te be
+		 */
 		public function GuiButton(eventFunction: Function, posX: int, posY: int) 
 		{
 			
@@ -32,6 +38,10 @@ package entities.gui
 			
 		}
 		
+		/**
+		 * Checks for a mouse-release on the button and triggers the eventFunction passed by the Gui-class
+		 * Also checks if the mouse enters/leaves the button and calls onSelect()/onDeselect()
+		 */
 		override public function update() : void
 		{
 			
@@ -57,11 +67,17 @@ package entities.gui
 			
 		}
 		
+		/**
+		 * When the mouse moves over the button
+		 */
 		public function onSelect(): void
 		{
 			return;
 		}
 		
+		/**
+		 * When the mouse leaves the button
+		 */
 		public function onDeselect(): void
 		{
 			return;

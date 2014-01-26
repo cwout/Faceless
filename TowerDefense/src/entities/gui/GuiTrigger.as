@@ -17,8 +17,6 @@ package entities.gui
 		private var sizeY: int;
 		private var image : Image;
 		
-		[Embed(source="../../assets/MenuTrigger.png")] public const MENUTRIGGER:Class;
-		
 		public function GuiTrigger() 
 		{
 			
@@ -29,7 +27,7 @@ package entities.gui
 		override public function added():void
 		{
 			
-			image = new Image(MENUTRIGGER);
+			image = new Image(Assets.GUITRIGGER);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
@@ -37,7 +35,7 @@ package entities.gui
 			x = FP.width - (sizeX / 2);
 			y = FP.height - (sizeY / 2);
 			layer = -100;
-			mask = new Pixelmask(MENUTRIGGER, -(sizeX / 2), -(sizeY / 2));
+			mask = new Pixelmask(Assets.GUITRIGGER, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
 			
 		}

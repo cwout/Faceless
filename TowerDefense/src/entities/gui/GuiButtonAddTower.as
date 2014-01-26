@@ -4,13 +4,11 @@ package entities.gui
 	import net.flashpunk.masks.Pixelmask;
 	import net.flashpunk.graphics.Image;
 	/**
-	 * ...
+	 * A button for adding a tower
 	 * @author Wout Coenen
 	 */
 	public class GuiButtonAddTower extends GuiButton
 	{
-		[Embed(source = "../../assets/MenuButtonAddTower.png")] private const IMG: Class;
-		[Embed(source = "../../assets/MenuButtonAddTowerPressed.png")] private const IMG_PRESSED: Class;
 		
 		public function GuiButtonAddTower(eventFunction: Function, posX: int, posY: int) 
 		{
@@ -19,39 +17,46 @@ package entities.gui
 		
 		}
 		
+		/**
+		 * Sets the image and the idString (for event handling)
+		 */
 		override public function added(): void
 		{
 			
-			image = new Image(IMG);
+			image = new Image(Assets.GUISMALLBUTTONADDTOWER);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
 			image.centerOrigin();
-			mask = new Pixelmask(IMG, -(sizeX / 2), -(sizeY / 2));
+			mask = new Pixelmask(Assets.GUISMALLBUTTONADDTOWER, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
 			
 			idString = "GuiButtonAddTower";
 			
 		}
 		
+		/**
+		 * changes the image of the button when the mouse hovers over it
+		 */
 		override public function onSelect(): void
 		{
-			image = new Image(IMG_PRESSED);
+			image = new Image(Assets.GUISMALLBUTTONADDTOWER_PRESSED);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
 			image.centerOrigin();
 		}
 		
+		/**
+		 * changes back the image when the mouse leaves the button
+		 */
 		override public function onDeselect(): void
 		{
-			image = new Image(IMG);
+			image = new Image(Assets.GUISMALLBUTTONADDTOWER);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
 			image.centerOrigin();
-			mask = new Pixelmask(IMG, -(sizeX / 2), -(sizeY / 2));
-			setHitboxTo(mask);
 		}
 		
 	}
