@@ -29,6 +29,9 @@ package entities.map
 		public function initializeMap():void
 		{
 			parseMap(Assets.LEVEL_TESTLEVEL);
+			var tile : GroundTile = getGroundTile(4, 4);
+			mapData[4 + 4 * mapWidth] = new BasicTower(this, 4, 4, 2);
+			world.add(mapData[4 + 4 * mapWidth]);
 		}
 		
 		public function parseMap(map : Class):void

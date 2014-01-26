@@ -17,7 +17,7 @@ package worlds
 	public class TestWorld extends World 
 	{
 		public var map:Map = new Map();
-		public var tower: BasicTower = new BasicTower;
+		//public var tower: BasicTower = new BasicTower;
 		public var testenemy: TestEnemy = new TestEnemy;
 		
 		
@@ -30,7 +30,7 @@ package worlds
 		override public function begin():void 
 		{
 			add(map);		
-			add(tower);
+			//add(tower);
 			
 			add(testenemy);
 			
@@ -39,8 +39,8 @@ package worlds
 		
 		override public function update():void {
 			super.update();
-			if (FP.distance(tower.x, tower.y, testenemy.x, testenemy.y) <= tower.range)
-				tower.shoot(testenemy.x, testenemy.y, testenemy.speed, testenemy.angle);
+			//if (FP.distance(tower.x, tower.y, testenemy.x, testenemy.y) <= tower.range)
+			//	tower.shoot(testenemy.x, testenemy.y, testenemy.speed, testenemy.angle);
 			
 			//testing pathfinding
 			if (!done) {

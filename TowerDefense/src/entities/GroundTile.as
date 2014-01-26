@@ -41,8 +41,8 @@ package entities
 			this.map = map;
 			this.groundHeight = groundHeight;
 			
-			this.x = gridX * 40;
-			this.y = gridY * 40;
+			this.x = gridX * References.TILESIZE + References.TILESIZE / 2;
+			this.y = gridY * References.TILESIZE + References.TILESIZE / 2;
 		}
 		
 		override public function added():void 
@@ -70,6 +70,7 @@ package entities
 					this.graphic = new Image(Assets.SNOW);
 					break;
 			}
+			(this.graphic as Image).centerOrigin();
 			//(this.graphic as Image).color = 0x222222 + 0x1D1D1D * (1+groundHeight);//Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
 		}
 		
