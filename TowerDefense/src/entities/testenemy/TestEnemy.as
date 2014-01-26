@@ -15,7 +15,7 @@ package entities.testenemy
 	public class TestEnemy extends Entity 
 	{
 		public var image : Image;
-		public var speed : int = 100;
+		public var speed : int = 50;
 		public var angle : Number = 180 * FP.RAD;
 		
 		override public function added():void 
@@ -38,8 +38,15 @@ package entities.testenemy
 			}
 			
 			if (Input.check(Key.F)) {
-				this.angle += (5 * FP.RAD);
+				this.angle += (2 * FP.RAD);
 			}
+			
+			if (Input.check(Key.D)) {
+				this.speed += 10;
+			}
+			
+			if (this.x <= 0)
+			this.x = 800;
 		}
 		
 		public function isInRange(x : int, y : int):Boolean {

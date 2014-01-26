@@ -14,16 +14,19 @@ package entities.projectiles
 	 */
 	public class BasicBall extends Entity 
 	{
+		public var damage: Number;
 		public var image: Image;
 		public var speed: Number;
 		public var angle: Number;
 		
-		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number)
+		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damge: Number)
 		{
 			//De speed updaten naar de gewenste speed (Nodig voor update functie)
 			this.speed = speed;
 			//Doorgegeven angle is in graden, deze omvormen naar radialen en opslagen als globale variabele (Nodig voor update functie)
 			this.angle = angle *= FP.RAD;
+			//Doorgegeven damage toevoegen;
+			this.damage = damage;
 	
 			//Berekende start positie a.d.h.v. berekende lengte van de 'loop' FUCKING GONIOMETRIE
 			this.x = x + (width * (Math.cos(this.angle)));

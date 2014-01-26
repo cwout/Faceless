@@ -18,11 +18,13 @@ package entities.towers
 	public class BasicTower extends GroundTile
 	{
 		//Range van de toren
-		public var range: int = 400;
+		public var range: int = 100;
 		//De snelheid van de bal die wordt afgevuurd
 		public var ballspeed: int = 500;
 		//De fire cooldown
 		public var cooldown: int = 0;
+		//De damage van de projectitelen
+		public var damage: Number = 20;
 		
 		public var image : Image;
 		
@@ -94,6 +96,7 @@ package entities.towers
 			var time: Number;
 			//End vars
 			
+
 			//De afstand berekenen tussen tower en enemy
 			distance = FP.distance(this.x, this.y, x, y);
 			//De tijd berekenen hoe lang de bal er over al doen
@@ -112,9 +115,9 @@ package entities.towers
 				image.angle = 180 + ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
 			//Als de toren van zijn cooldown af is mag hij schieten
 			if(this.cooldown == 0) {
-				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed));
+				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, damage));
 				//Cooldown resetten
-				this.cooldown = 60;
+				this.cooldown = 30;
 			}
 		}
 	}
