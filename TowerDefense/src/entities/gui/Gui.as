@@ -48,6 +48,12 @@ package entities.gui
 		public static function clickedMenuSmall(idString: String): void
 		{
 			trace (idString);
+			
+			if (idString == "GuiButtonAddTower")
+			{
+				FP.world.add(new GuiNewTowerOverlay(funcP));
+			}
+			
 		}
 		
 	}

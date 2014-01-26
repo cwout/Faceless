@@ -31,6 +31,7 @@ package
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;
 		[Embed(source = "assets/MenuSmallBg.png")] public static const GUISMALLBACKGROUND : Class;
 		[Embed(source = "assets/CustomCursor.png")] public static const CUSTOMCURSOR : Class;
+		[Embed(source = "assets/addTowerOverlay.png")] public static const GUIADDTOWEROVERLAY : Class;
 		//GUI BUTTON GRAPHICS
 		[Embed(source = "assets/MenuButtonAddTower.png")] public static const GUISMALLBUTTONADDTOWER: Class;
 		[Embed(source = "assets/MenuButtonAddTowerPressed.png")] public static const GUISMALLBUTTONADDTOWER_PRESSED: Class;
