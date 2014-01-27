@@ -36,21 +36,21 @@ package entities.testenemy
 		private var bool:Boolean = true;
 		private var endloc:Vector.<int>;
 		
-		public function EnemyTemplate(sp:int, img:Class, map:Map) {
+		public function EnemyTemplate(sp:int, img:Class, map:Map,xBegin:int, yBegin:int, xEnd:int, yEnd:int) {
 			set_speed(sp);
 			set_image(img);
 			set_size(1, 1);
 			
 			this.map = map;
 			//sets the end loc
-			setEndLoc(19, 19);
+			setEndLoc(xEnd, yEnd);
+			//set the begin loc
+			set_position(xBegin, yBegin);
 		}
 		
 		override public function added():void {
 			this.layer = References.ENEMYLAYER;
-			//sets the beginning loc
-			set_position(2, 2);
-			
+
 			updatePath();
 		}
 		
@@ -75,21 +75,6 @@ package entities.testenemy
 		 */
 		override public function update():void {
 			move();
-			
-			if (Input.pressed(Key.R)) {
-				this.x = 800;
-			}
-			
-			if (Input.check(Key.F)) {
-				this.angle += (2 * FP.RAD);
-			}
-			
-			if (Input.check(Key.D)) {
-				this.speed += 10;
-			}
-			
-			if (this.x <= 0)
-				this.x = 800;
 		}
 		
 		/**
@@ -231,6 +216,11 @@ package entities.testenemy
 			return calcPath(endloc[0], endloc[1]);
 		}
 		
+		/**
+		 * set the ending location of this monster
+		 * @param	x
+		 * @param	y
+		 */
 		public function setEndLoc(x:int, y:int):void {
 			endloc = new Vector.<int>();
 			endloc.push(x);
