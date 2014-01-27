@@ -106,7 +106,7 @@ package entities.gui
 					debugEnabled = true;
 					FP.console.visible = true;
 				}
-					
+		
 			}
 			
 		}
