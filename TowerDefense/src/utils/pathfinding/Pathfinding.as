@@ -106,7 +106,7 @@ package utils.pathfinding
 		/**
 		 * Function to calculate the dijkstra path
 		 */
-		public static function pathDijkstra(graph:Vector.< GroundTile > , begin:GroundTile, end:GroundTile):Path {
+		public static function pathDijkstra(begin:GroundTile, end:GroundTile):Path {
 			var startrecord:NodeRecord;
 			startrecord = new NodeRecord();
 			startrecord.node = begin;

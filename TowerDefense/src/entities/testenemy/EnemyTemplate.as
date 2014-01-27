@@ -43,9 +43,9 @@ package entities.testenemy
 		
 		override public function added():void {
 			this.layer = -5000;
-			set_position(2, 6);
+			set_position(0, 0);
 			
-			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(9, 2));
+			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(5, 5));
 		}
 		
 		/**
@@ -145,10 +145,11 @@ package entities.testenemy
 		 * @param	y
 		 */
 		public function set_position(x:int, y:int):void {
+			//swapped
+			this.x = References.TILESIZE * x + References.TILESIZE/2;
+			this.y = References.TILESIZE * y + References.TILESIZE / 2;
 			this.xmap = x;
 			this.ymap = y;
-			this.x = References.TILESIZE * x + References.TILESIZE/2;
-			this.y = References.TILESIZE * y + References.TILESIZE/2;
 		}
 		
 		/**
