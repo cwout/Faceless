@@ -15,7 +15,7 @@ package entities.gui
 	public class Gui
 	{
 		
-		private static var funcP: Function = clickedMenuSmall;
+		private static var funcP: Function = eventHandler;
 		private static var useCustomCursor: Boolean = false;
 		public static var map: Map;
 		
@@ -66,7 +66,7 @@ package entities.gui
 		 * triggered when a button has been clicked on the small menu
 		 * @param	idString the String-identifier of the clicked button
 		 */
-		public static function clickedMenuSmall(idString: String): void
+		public static function eventHandler(idString: String): void
 		{
 			//DEBUG LINE
 			trace (idString);
