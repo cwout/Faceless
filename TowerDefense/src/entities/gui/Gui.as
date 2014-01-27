@@ -4,6 +4,7 @@ package entities.gui
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import entities.towers.BasicTower;
+	import entities.testenemy.EnemyTemplate;
 	
 	/**
 	 * main Gui-class, every other class has to call this one to interact with the GUI
@@ -89,11 +90,25 @@ package entities.gui
 				if (Gui.map.getGroundTile(tileX, tileY).placeable)
 				{
 					var pathsExist:Boolean = true;
+					var wasPassable: Boolean = Gui.map.getGroundTile(tileX, tileY).passable;
+					Gui.map.getGroundTile(tileX, tileY).passable = false;
+				
+					var enemyList : Array = [];
+					FP.world.getClass(EnemyTemplate, enemyList);
+					for each (var enemy:EnemyTemplate in enemyList)
+					{
+						pathsExist &&= enemy.updatePath();
+					}
 					
-					var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
-					var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
-					map.addTower(tileX, tileY);
-					guiTowerSelectedOverlay.doNotSelectNextFrame();
+					Gui.map.getGroundTile(tileX, tileY).passable = wasPassable;
+					
+					if (pathsExist)
+					{
+						var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+						var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
+						map.addTower(tileX, tileY);
+						guiTowerSelectedOverlay.doNotSelectNextFrame();
+					}
 
 				}
 			}
