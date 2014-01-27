@@ -132,9 +132,15 @@ package entities.towers
 			//De tijd berekenen hoe lang de bal er over al doen
 			time = distance / ballspeed;
 			
+			var newx: int = x;
+			var newy: int = y;
 			//De verwachte x en y waarden verhogen a.d.h.v. enemyHoek * enemySpeed * de tijd die de bal er over moet doen
+			newx += ((objectSpeed) * (Math.cos(objectAngle))) * time;
+			newy += ((objectSpeed) * (Math.sin(objectAngle))) * time;
+			distance = FP.distance(this.x, this.y, newx, newy);
+			time = distance / ballspeed;
 			x += ((objectSpeed) * (Math.cos(objectAngle))) * time;
-			y += ((objectSpeed) * (Math.sin(objectAngle))) * time;
+			x += ((objectSpeed) * (Math.sin(objectAngle))) * time;
 			
 			
 			//Als het object zich rechts van ons bevind 
