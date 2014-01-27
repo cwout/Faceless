@@ -42,7 +42,7 @@ package entities.testenemy
 		}
 		
 		override public function added():void {
-			this.layer = -5000;
+			this.layer = References.ENEMYLAYER;
 			set_position(2, 6);
 			
 			calcPath(7,2);
