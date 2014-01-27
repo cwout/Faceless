@@ -87,13 +87,16 @@ package entities.gui
 			}
 			else if (idString == "AddTower")
 			{
+				var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+				var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
+						
 				if (Gui.map.getGroundTile(tileX, tileY).placeable)
 				{
 					var pathsExist:Boolean = true;
 					var wasPassable: Boolean = Gui.map.getGroundTile(tileX, tileY).passable;
 					Gui.map.getGroundTile(tileX, tileY).passable = false;
 				
-					var enemyList : Array = [];
+					var enemyList : Array = new Array();
 					FP.world.getClass(EnemyTemplate, enemyList);
 					for each (var enemy:EnemyTemplate in enemyList)
 					{
@@ -104,8 +107,6 @@ package entities.gui
 					
 					if (pathsExist)
 					{
-						var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
-						var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
 						map.addTower(tileX, tileY);
 						guiTowerSelectedOverlay.doNotSelectNextFrame();
 					}
