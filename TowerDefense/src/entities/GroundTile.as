@@ -100,7 +100,6 @@ package entities
 			tile = map.getGroundTile(gridX, gridY - 1);
 			if (tile != null && tile.groundHeight > groundHeight) {
 				shadow.setFrame(1, 0);
-				trace(tile.groundHeight);
 				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
