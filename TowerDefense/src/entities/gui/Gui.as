@@ -85,16 +85,9 @@ package entities.gui
 			}
 			else if (idString == "AddTower")
 			{
-				var tempTower: BasicTower;
-				var height: int = 0;
 				var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
 				var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
-				if (map.mapData != null)
-					height = map.getGroundTile(tileX, tileY).groundHeight;
-				tempTower = new BasicTower(null, tileX, tileY, height);
-				FP.world.remove(map.getGroundTile(tileX, tileY));
-				FP.world.add(tempTower);
-				map.setGroundTile(tileX, tileY, tempTower);
+				map.addTower(tileX, tileY);
 				guiTowerSelectedOverlay.doNotSelectNextFrame();
 			}
 			else if (idString == "ToggleDebug")
