@@ -11,6 +11,7 @@ package utils.pathfinding
 	{
 		public var path:Vector.< GroundTile > = new Vector.<GroundTile>;
 		private var currentNode:int = 0;
+		private var end:int;
 		
 		public function Path() 
 		{
@@ -18,25 +19,28 @@ package utils.pathfinding
 		}
 		
 		public function getDirection(x:int, y:int):int {
-			var xnew:int = path[currentNode].gridX;
-			var ynew:int = path[currentNode].gridY;
-			
+			end = path.length;
 			var facing:int = 5;
 			
-			if (xnew < x) {
-				facing = 2;
+			if (currentNode < end) {
+				var xnew:int = path[currentNode].gridX;
+				var ynew:int = path[currentNode].gridY;
+				
+				if (xnew < x) {
+					facing = 2;
+				}
+				else if (xnew > x) {
+					facing = 0;
+				}
+				if (ynew < y) {
+					facing = 3;
+				}
+				else if (ynew > y) {
+					facing = 1;
+				}
+				
+				currentNode++;
 			}
-			else if (xnew > x) {
-				facing = 0;
-			}
-			if (ynew < y) {
-				facing = 3;
-			}
-			else if (ynew > y) {
-				facing = 1;
-			}
-			
-			currentNode++;
 			return facing;
 		}
 		

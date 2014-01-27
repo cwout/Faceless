@@ -12,6 +12,8 @@ package entities.testenemy
 	import utils.pathfinding.Path;
 	import utils.pathfinding.Pathfinding;
 	
+	import entities.GroundTile;
+	
 	/**
 	 * ...
 	 * @author Axel Faes
@@ -37,13 +39,13 @@ package entities.testenemy
 			set_size(1, 1);
 			
 			this.map = map;
-			
-			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(10, 10));
 		}
 		
 		override public function added():void {
 			this.layer = -5000;
-			set_position(10, 5);
+			set_position(6, 6);
+			
+			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(12, 3));
 		}
 		
 		/**
@@ -73,6 +75,8 @@ package entities.testenemy
 		 */
 		public function usePath():void {
 			//change facing
+			facing = path.getDirection(xmap, ymap);
+			trace(facing);
 		}
 		
 		/**
@@ -82,6 +86,7 @@ package entities.testenemy
 			setFacing();
 			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
 			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			inTileRange();
 			
 		}
 		
@@ -90,8 +95,8 @@ package entities.testenemy
 		 * Get the real x and y location of the grid
 		 */
 		private function inTileRange():void {
-			var xnew:int = this.x / References.TILESIZE;
-			var ynew:int = this.y / References.TILESIZE;
+			var xnew:int = (this.x+this.width/2) / References.TILESIZE;
+			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
 				usePath();
@@ -141,8 +146,8 @@ package entities.testenemy
 		public function set_position(x:int, y:int):void {
 			this.xmap = x;
 			this.ymap = y;
-			this.x = References.TILESIZE * x;
-			this.y = References.TILESIZE * y;
+			this.x = References.TILESIZE * x + References.TILESIZE/2;
+			this.y = References.TILESIZE * y + References.TILESIZE/2;
 		}
 		
 		/**

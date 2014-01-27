@@ -153,11 +153,9 @@ package utils.pathfinding
 			}	
 			
 			if (current.node != end) {
-				trace("found nothing");
 				return null;
 			}
 			else {
-				trace("found path");
 				var path:Path = new Path();
 				
 				while (current.node != begin) {
