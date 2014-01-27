@@ -21,6 +21,7 @@ package entities.map
 			var rock : Image = new Image(Assets.RUBBLE);
 			addGraphic(rock);
 			rock.centerOrigin();
+			rock.angle = Math.random() * 360;
 			this.passable = false;
 			this.placeable = false;
 		}
