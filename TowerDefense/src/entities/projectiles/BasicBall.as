@@ -8,6 +8,7 @@ package entities.projectiles
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.Mask;
+	import entities.gui.Gui;
 	
 	/**
 	 * ...
@@ -50,11 +51,10 @@ package entities.projectiles
 			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
 			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
 			
-			var map: Map = new Map();
-			if (this.x < 0 || this.x > (map.mapWidth * References.TILESIZE)) {
-				if (this.y < 0 || this.y < (map.mapHeight * References.TILESIZE)) {
-					die();
-				}
+			var map: Map = Gui.map;
+			if (this.x < 0 || this.x > (map.mapWidth * References.TILESIZE) || this.y < 0 || this.y > (map.mapHeight * References.TILESIZE))
+			{
+				die();
 			}
 		}
 		
