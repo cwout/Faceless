@@ -61,7 +61,7 @@ package entities.testenemy
 			var status:Boolean = false;
 			
 			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
-			
+					
 			if (p) {
 				path = p;
 				status = true;

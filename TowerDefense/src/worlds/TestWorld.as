@@ -24,17 +24,18 @@ package worlds
 		public var done:Boolean = false;
 		public function TestWorld() 
 		{
-			testenemy = new FirstEnemy(map);
+			
 		}
 		
 		override public function begin():void 
 		{
 			add(map);		
 			//add(tower);
-			
-			add(testenemy);
-			
+
 			Gui.initWithMap(this.map);
+			
+			testenemy = new FirstEnemy(Gui.map);
+			add(testenemy);
 		}
 		
 		override public function update():void {

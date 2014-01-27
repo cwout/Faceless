@@ -112,7 +112,7 @@ package entities.gui
 					}
 					else
 					{
-						for each (var enemy:EnemyTemplate in enemyList)
+						for each (enemy in enemyList)
 						{
 							enemy.updatePath();
 						}
