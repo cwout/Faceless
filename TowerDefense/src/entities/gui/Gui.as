@@ -16,6 +16,7 @@ package entities.gui
 		private static var funcP: Function = eventHandler;
 		private static var useCustomCursor: Boolean = false;
 		public static var map: Map;
+		private static var debugEnabled: Boolean;
 		
 		/**
 		 * Call this method to initialize the GUI
@@ -47,6 +48,9 @@ package entities.gui
 			
 			FP.world.add(new GuiTowerSelectedOverlay());
 			
+			FP.console.enable();
+			debugEnabled = true;
+			
 		}
 		
 		/**
@@ -75,7 +79,7 @@ package entities.gui
 			{
 				FP.world.add(new GuiNewTowerOverlay(funcP));
 			}
-			if (idString == "AddTower")
+			else if (idString == "AddTower")
 			{
 				var tempTower: BasicTower;
 				var height: int = 0;
@@ -87,6 +91,20 @@ package entities.gui
 				FP.world.remove(map.getGroundTile(tileX, tileY));
 				FP.world.add(tempTower);
 				map.setGroundTile(tileX, tileY, tempTower);
+			}
+			else if (idString == "ToggleDebug")
+			{
+				if (debugEnabled)
+				{
+					debugEnabled = false;
+					FP.console.visible = false;
+				}
+				else
+				{
+					debugEnabled = true;
+					FP.console.visible = true;
+				}
+					
 			}
 			
 		}
