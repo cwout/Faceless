@@ -23,6 +23,7 @@ package entities.map
 		
 		override public function added():void 
 		{
+			type = "map";
 			initializeMap();
 		}
 		
