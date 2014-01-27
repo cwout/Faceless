@@ -113,7 +113,12 @@ package entities.map
 		{
 				var tile : GroundTile = getGroundTile(x, y);
 				
+<<<<<<< HEAD
 				var tempTower  : BasicTower = new BasicTower(this, x, y, tile.groundHeight);
+=======
+				var tempTower  : BasicTower = new BasicTower(null, x, y, tile.height);
+
+>>>>>>> 91bb68d740e6e01df2da1e03c0d2d1e67d257b8d
 				
 				FP.world.remove(tile);
 				
