@@ -33,6 +33,8 @@ package entities.testenemy
 		
 		private var path:Path;
 		
+		private var bool:Boolean = true;
+		
 		public function EnemyTemplate(sp:int, img:Class, map:Map) {
 			set_speed(sp);
 			set_image(img);
@@ -43,9 +45,9 @@ package entities.testenemy
 		
 		override public function added():void {
 			this.layer = References.ENEMYLAYER;
-			set_position(2, 6);
+			set_position(2, 2);
 			
-			calcPath(7,2);
+			calcPath(8,8);
 		}
 		
 		/**
@@ -95,6 +97,16 @@ package entities.testenemy
 				this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
 				this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
 			}
+			else {
+				if (bool) {
+					calcPath(2, 2);
+					bool = false;
+				}
+				else {
+					bool = true;
+					calcPath(8, 8);
+				}
+			}
 			inTileRange();
 			
 		}
@@ -104,8 +116,8 @@ package entities.testenemy
 		 * Get the real x and y location of the grid
 		 */
 		private function inTileRange():void {
-			var xnew:int = (this.x+this.width/2) / References.TILESIZE;
-			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
+			var xnew:int = (this.x-this.width/2) / References.TILESIZE;
+			var ynew:int = (this.y-this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
 				this.xmap = xnew;
