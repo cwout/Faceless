@@ -5,6 +5,8 @@ package entities.map
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	/**
 	 * ...
 	 * @author Olivier de Schaetzen
@@ -17,6 +19,8 @@ package entities.map
 		public var mapWidth : int = 0;
 		//the height of the map
 		public var mapHeight : int = 0;
+		//the speed at which the camera scrolls
+		private var scrollSpeed : int = 150;
 		
 		override public function added():void 
 		{
@@ -40,6 +44,7 @@ package entities.map
 		
 		public function parseMap(map : Class):void
 		{
+			
 			//the xml file that is being parsed
 			var xml : XML = FP.getXML(map);
 			
@@ -66,6 +71,31 @@ package entities.map
 					mapData[tilex + tiley * mapWidth] = groundTile;
 				
 			}
+		}
+		
+		override public function update():void 
+		{
+			super.update();
+			
+			//here we move the flashpunk camera
+			
+			if (Input.check(Key.RIGHT)) {
+				FP.camera.x += scrollSpeed * FP.elapsed;
+				if ( FP.camera.x > mapWidth * References.TILESIZE - 800) FP.camera.x = mapWidth * References.TILESIZE - 800;
+			}
+			if (Input.check(Key.LEFT)) {
+				FP.camera.x -= scrollSpeed * FP.elapsed;
+				if (FP.camera.x < 0) FP.camera.x = 0;
+			}
+			if (Input.check(Key.UP)) {
+				FP.camera.y -= scrollSpeed * FP.elapsed;
+				if (FP.camera.y < 0) FP.camera.y = 0;
+			}
+			if (Input.check(Key.DOWN)) {
+				FP.camera.y += scrollSpeed * FP.elapsed;
+				if ( FP.camera.y > mapHeight * References.TILESIZE - 600) FP.camera.y = mapHeight * References.TILESIZE - 600;
+			}
+			
 		}
 		
 		/**

@@ -3,6 +3,7 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
+	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -55,7 +56,7 @@ package entities.towers
 		{
 		
 			//Test Purposes
-			if (Input.check(Key.A)) {
+			/*if (Input.check(Key.A)) {
 				image.angle += 5;
 			}
 			if (Input.check(Key.E)) {
@@ -76,7 +77,7 @@ package entities.towers
 			
 			if (Input.check(Key.DOWN)) {
 				this.y += 220 * FP.elapsed;
-			}
+			}*/
 			
 			if (Input.check(Key.SPACE)) {
 				
