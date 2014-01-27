@@ -53,7 +53,8 @@ package entities.gui
 			FP.world.add(guiTowerSelectedOverlay);
 			
 			FP.console.enable();
-			debugEnabled = true;
+			FP.console.visible = false;
+			debugEnabled = false;
 			
 		}
 		

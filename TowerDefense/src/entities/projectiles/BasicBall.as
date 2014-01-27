@@ -21,6 +21,7 @@ package entities.projectiles
 		
 		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damge: Number)
 		{
+			this.layer = References.PROJECTILELAYER;
 			//De speed updaten naar de gewenste speed (Nodig voor update functie)
 			this.speed = speed;
 			//Doorgegeven angle is in graden, deze omvormen naar radialen en opslagen als globale variabele (Nodig voor update functie)

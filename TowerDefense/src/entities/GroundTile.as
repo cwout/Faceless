@@ -46,6 +46,7 @@ package entities
 			this.gridY = y;
 			this.map = map;
 			this.groundHeight = groundHeight;
+			this.layer = References.GROUNDTILELAYER;
 			
 			this.x = gridX * References.TILESIZE + References.TILESIZE / 2;
 			this.y = gridY * References.TILESIZE + References.TILESIZE / 2;
