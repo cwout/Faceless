@@ -4,6 +4,7 @@ package entities
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.graphics.Spritemap;
 	
 	/**
 	 * ...
@@ -51,28 +52,30 @@ package entities
 		{
 			switch (groundHeight) {
 				case 0:
-					this.graphic = new Image(Assets.ABYSS);
+					this.graphic = new Spritemap(Assets.ABYSS, 40, 40);
 					break
 				case 1:
-					this.graphic = new Image(Assets.MUD);
+					this.graphic = new Spritemap(Assets.MUD, 40, 40);
 					break
 				case 2:
-					this.graphic = new Image(Assets.MUDGRASS);
+					this.graphic = new Spritemap(Assets.MUDGRASS, 40, 40);
 					break
 				case 3:
-					this.graphic = new Image(Assets.GRASS);
+					this.graphic = new Spritemap(Assets.GRASS, 40, 40);
 					break;
 				case 4:
-					this.graphic = new Image(Assets.ROCKGRASS);
+					this.graphic = new Spritemap(Assets.ROCKGRASS, 40, 40);
 					break;
 				case 5:
-					this.graphic = new Image(Assets.ROCK);
+					this.graphic = new Spritemap(Assets.ROCK, 40, 40);
 					break;
 				case 6:
-					this.graphic = new Image(Assets.SNOW);
+					this.graphic = new Spritemap(Assets.SNOW, 40, 40);
 					break;
 			}
-			(this.graphic as Image).centerOrigin();
+			(this.graphic as Spritemap).centerOrigin();
+			(this.graphic as Spritemap).frame = Math.random() * 4;
+			//(this.graphic as Image).angle = Math.floor(Math.random()*4)*90;
 			//(this.graphic as Image).color = 0x222222 + 0x1D1D1D * (1+groundHeight);//Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
 		}
 		
