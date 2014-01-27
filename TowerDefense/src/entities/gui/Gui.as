@@ -17,6 +17,7 @@ package entities.gui
 		private static var useCustomCursor: Boolean = false;
 		public static var map: Map;
 		private static var debugEnabled: Boolean;
+		private static var guiTowerSelectedOverlay = new GuiTowerSelectedOverlay();
 		
 		/**
 		 * Call this method to initialize the GUI
@@ -46,7 +47,7 @@ package entities.gui
 			//add a var for the map
 			map = mapVar;
 			
-			FP.world.add(new GuiTowerSelectedOverlay());
+			FP.world.add(guiTowerSelectedOverlay);
 			
 			FP.console.enable();
 			debugEnabled = true;
@@ -91,6 +92,7 @@ package entities.gui
 				FP.world.remove(map.getGroundTile(tileX, tileY));
 				FP.world.add(tempTower);
 				map.setGroundTile(tileX, tileY, tempTower);
+				guiTowerSelectedOverlay.doNotSelectNextFrame();
 			}
 			else if (idString == "ToggleDebug")
 			{

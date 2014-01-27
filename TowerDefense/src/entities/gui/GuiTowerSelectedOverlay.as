@@ -68,6 +68,11 @@ package entities.gui
 			
 		}
 		
+		public function doNotSelectNextFrame(): void
+		{
+			clicked = false;
+		}
+		
 	}
 
 }
