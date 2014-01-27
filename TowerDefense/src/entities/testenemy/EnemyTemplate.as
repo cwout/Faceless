@@ -43,7 +43,7 @@ package entities.testenemy
 		
 		override public function added():void {
 			this.layer = -5000;
-			set_position(6, 6);
+			set_position(2, 6);
 			
 			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(9, 2));
 		}
