@@ -47,7 +47,7 @@ package entities.testenemy
 			this.layer = References.ENEMYLAYER;
 			set_position(2, 2);
 			
-			calcPath(8,8);
+			calcPath(19,19);
 		}
 		
 		/**
@@ -104,7 +104,7 @@ package entities.testenemy
 				}
 				else {
 					bool = true;
-					calcPath(8, 8);
+					calcPath(19,19);
 				}
 			}
 			inTileRange();

@@ -1,5 +1,6 @@
 package entities.projectiles 
 {
+	import entities.map.Map;
 	import flash.automation.KeyboardAutomationAction;
 	import flash.events.DRMCustomProperties;
 	import net.flashpunk.Entity;
@@ -45,9 +46,23 @@ package entities.projectiles
 		
 		override public function update():void 
 		{
+			
 			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
 			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			
+			var map: Map = new Map();
+			if (this.x < 0 || this.x > (map.mapWidth * References.TILESIZE)) {
+				if (this.y < 0 || this.y < (map.mapHeight * References.TILESIZE)) {
+					die();
+				}
+			}
 		}
+		
+		private function die(): void {
+			FP.world.remove(this);
+		}
+		
+		
 	}
 
 }
