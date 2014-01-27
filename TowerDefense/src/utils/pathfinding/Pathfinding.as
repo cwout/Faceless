@@ -3,8 +3,6 @@ package utils.pathfinding
 	import entities.GroundTile;
 	
 	/**
-	 * TODO:
-	 * add upgrades (height difference)
 	 * @author Axel Faes
 	 */
 	public class Pathfinding 
