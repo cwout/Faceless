@@ -58,6 +58,7 @@ package entities.projectiles
 			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
 			
 			var map: Map = Gui.map;
+			map = FP.world.getInstance("map");
 			if (this.x < 0 || this.x > (map.mapWidth * References.TILESIZE) || this.y < 0 || this.y > (map.mapHeight * References.TILESIZE))
 			{
 				die();
@@ -72,9 +73,7 @@ package entities.projectiles
 				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < 7)
 					hit();
 			}
-			
-			
-			map = FP.world.getInstance("map");
+
 			
 			if (map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)).groundHeight > ballHeight)
 				die();
