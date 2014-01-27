@@ -86,10 +86,16 @@ package entities.gui
 			}
 			else if (idString == "AddTower")
 			{
-				var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
-				var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
-				map.addTower(tileX, tileY);
-				guiTowerSelectedOverlay.doNotSelectNextFrame();
+				if (Gui.map.getGroundTile(tileX, tileY).placeable)
+				{
+					var boolean: pathsExist = true;
+					
+					var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+					var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
+					map.addTower(tileX, tileY);
+					guiTowerSelectedOverlay.doNotSelectNextFrame();
+
+				}
 			}
 			else if (idString == "ToggleDebug")
 			{

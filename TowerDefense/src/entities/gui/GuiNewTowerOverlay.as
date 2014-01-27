@@ -58,8 +58,7 @@ package entities.gui
 			
 			if (Input.mouseReleased)
 			{
-				if (Gui.map.getGroundTile(tileX, tileY).placeable)
-					eventFunction("AddTower");
+				eventFunction("AddTower");
 				FP.world.remove(this);
 			}
 			else if (Input.check(Key.ESCAPE))
