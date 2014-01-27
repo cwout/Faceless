@@ -32,13 +32,6 @@ package entities.map
 		public function initializeMap():void
 		{
 			parseMap(Assets.LEVEL_TESTLEVEL);
-			var tile : GroundTile = getGroundTile(4, 4);
-			var tower : BasicTower = new BasicTower(this, 4,4, tile.groundHeight);
-			
-			setGroundTile(4, 4, tower);
-			
-			world.add(tower);
-			world.remove(tile);
 		}
 		
 		public function parseMap(map : Class):void
@@ -67,9 +60,28 @@ package entities.map
 					world.add(groundTile);
 					
 					//and put them in the array
-					mapData[tilex + tiley * mapWidth] = groundTile;
+					mapData[tilex + tiley * mapWidth] = groundTile;	
+			}
+			
+			for each(var object : XML in xml.Objects.tile) {
+					tilex = parseInt(object.@x);
+					tiley = parseInt(object.@y);
+					var id : int = parseInt(object.@id);
+					var newtile : GroundTile = getGroundTile(tilex, tiley);
+					var newthing : GroundTile;
+					switch (id) {
+						case 0: //0 is ID for a piece of rubble
+							newthing = new Rubble(this, tilex, tiley, newtile.groundHeight);
+							break;
+					}
+					if (newthing != null) {
+						setGroundTile(tilex, tiley, newthing);
+						world.add(newthing);
+						world.remove(newtile);
+					}
 				
 			}
+			
 		}
 		
 		override public function update():void 

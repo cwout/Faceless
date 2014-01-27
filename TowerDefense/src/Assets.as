@@ -25,7 +25,8 @@ package
 		[Embed(source = "assets/snow.png")] public static const SNOW : Class;
 		[Embed(source = "assets/mud.png")] public static const MUD : Class;
 		[Embed(source="assets/mudgrass.png")] public static const MUDGRASS : Class;
-		[Embed(source="assets/abyss.png")] public static const ABYSS : Class;
+		[Embed(source = "assets/abyss.png")] public static const ABYSS : Class;
+		[Embed(source = "assets/rubble.png")] public static const RUBBLE : Class;
 		
 		//GUI GRAPHICS
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;

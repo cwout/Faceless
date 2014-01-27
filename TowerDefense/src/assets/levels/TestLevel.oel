@@ -751,4 +751,54 @@
     <tile x="29" y="23" id="3" />
     <tile x="29" y="24" id="3" />
   </MapData>
+  <Objects tileset="Objects" exportMode="XML">
+    <tile x="4" y="6" id="0" />
+    <tile x="5" y="6" id="0" />
+    <tile x="5" y="12" id="0" />
+    <tile x="6" y="4" id="0" />
+    <tile x="6" y="5" id="0" />
+    <tile x="6" y="6" id="0" />
+    <tile x="6" y="7" id="0" />
+    <tile x="6" y="9" id="0" />
+    <tile x="6" y="10" id="0" />
+    <tile x="6" y="12" id="0" />
+    <tile x="6" y="15" id="0" />
+    <tile x="7" y="4" id="0" />
+    <tile x="7" y="10" id="0" />
+    <tile x="7" y="11" id="0" />
+    <tile x="7" y="12" id="0" />
+    <tile x="7" y="13" id="0" />
+    <tile x="7" y="14" id="0" />
+    <tile x="7" y="15" id="0" />
+    <tile x="8" y="4" id="0" />
+    <tile x="9" y="4" id="0" />
+    <tile x="9" y="5" id="0" />
+    <tile x="9" y="6" id="0" />
+    <tile x="9" y="7" id="0" />
+    <tile x="9" y="8" id="0" />
+    <tile x="9" y="9" id="0" />
+    <tile x="10" y="8" id="0" />
+    <tile x="10" y="9" id="0" />
+    <tile x="10" y="10" id="0" />
+    <tile x="11" y="8" id="0" />
+    <tile x="11" y="9" id="0" />
+    <tile x="11" y="10" id="0" />
+    <tile x="12" y="6" id="0" />
+    <tile x="12" y="8" id="0" />
+    <tile x="13" y="6" id="0" />
+    <tile x="14" y="6" id="0" />
+    <tile x="15" y="6" id="0" />
+    <tile x="20" y="13" id="0" />
+    <tile x="21" y="12" id="0" />
+    <tile x="21" y="13" id="0" />
+    <tile x="21" y="14" id="0" />
+    <tile x="21" y="15" id="0" />
+    <tile x="22" y="10" id="0" />
+    <tile x="22" y="11" id="0" />
+    <tile x="22" y="12" id="0" />
+    <tile x="22" y="13" id="0" />
+    <tile x="22" y="14" id="0" />
+    <tile x="22" y="15" id="0" />
+    <tile x="23" y="15" id="0" />
+  </Objects>
 </level>

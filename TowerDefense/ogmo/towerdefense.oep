@@ -40,6 +40,18 @@
       </ScrollFactor>
       <ExportMode>XML</ExportMode>
     </LayerDefinition>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>Objects</Name>
+      <Grid>
+        <Width>40</Width>
+        <Height>40</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <ExportMode>XML</ExportMode>
+    </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
     <Tileset>
@@ -51,6 +63,31 @@
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
+    <Tileset>
+      <Name>Objects</Name>
+      <FilePath>..\src\assets\rubble.png</FilePath>
+      <TileSize>
+        <Width>40</Width>
+        <Height>40</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
   </Tilesets>
-  <EntityDefinitions />
+  <EntityDefinitions>
+    <EntityDefinition Name="Rubble" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>40</Width>
+        <Height>40</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\src\assets\rubble.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+  </EntityDefinitions>
 </project>
