@@ -22,8 +22,8 @@ package entities.testenemy
 	{
 		private var image : Image;
 		private var speed : int = 50;
-		private var health : Number = 10;
-		private var facing : int = 2;
+		protected var health : Number = 100;
+		private var facing : int = 5;
 		private var angle : Number = 180 * FP.RAD;
 		
 		private var map:Map;
@@ -45,7 +45,14 @@ package entities.testenemy
 			this.layer = -5000;
 			set_position(2, 6);
 			
-			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(9, 3));
+			calcPath(7,2);
+		}
+		
+		/**
+		 * calculate a path
+		 */
+		public function calcPath(x:int, y:int):void {
+			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
 			usePath();
 		}
 		
