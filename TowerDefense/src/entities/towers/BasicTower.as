@@ -80,9 +80,6 @@ package entities.towers
 				this.y += 220 * FP.elapsed;
 			}*/
 			
-			if (Input.check(Key.SPACE)) {
-				
-			}
 			
 			//End test purposes
 			
