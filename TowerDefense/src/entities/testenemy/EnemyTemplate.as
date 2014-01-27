@@ -43,9 +43,9 @@ package entities.testenemy
 		
 		override public function added():void {
 			this.layer = -5000;
-			set_position(6, 6);
+			set_position(0, 0);
 			
-			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(12, 3));
+			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(5, 5));
 		}
 		
 		/**
@@ -75,8 +75,7 @@ package entities.testenemy
 		 */
 		public function usePath():void {
 			//change facing
-			facing = path.getDirection(xmap, ymap);
-			trace(facing);
+			facing = path.getDirection(this.xmap, this.ymap);
 		}
 		
 		/**
@@ -84,8 +83,10 @@ package entities.testenemy
 		 */
 		private function move():void {
 			setFacing();
-			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
-			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			if (facing != 5){
+				this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
+				this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			}
 			inTileRange();
 			
 		}
@@ -99,9 +100,9 @@ package entities.testenemy
 			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
-				usePath();
 				this.xmap = xnew;
-				this.ymap = ynew
+				this.ymap = ynew;
+				usePath();
 			}
 		}
 		
@@ -144,10 +145,11 @@ package entities.testenemy
 		 * @param	y
 		 */
 		public function set_position(x:int, y:int):void {
+			//swapped
+			this.x = References.TILESIZE * x + References.TILESIZE/2;
+			this.y = References.TILESIZE * y + References.TILESIZE / 2;
 			this.xmap = x;
 			this.ymap = y;
-			this.x = References.TILESIZE * x + References.TILESIZE/2;
-			this.y = References.TILESIZE * y + References.TILESIZE/2;
 		}
 		
 		/**

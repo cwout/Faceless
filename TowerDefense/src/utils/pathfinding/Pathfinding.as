@@ -27,26 +27,33 @@ package utils.pathfinding
 		 */ 
 		private static function getConnections(current:NodeRecord):Vector.<Connection>{
 			var open:Vector.<Connection> = new Vector.<Connection>;
-
-			if (current.node.getLeftTile()) {
+			
+			var cur:GroundTile = current.node.getLeftTile();
+			if (cur && (Math.abs(cur.groundHeight-current.node.groundHeight)<=1) && cur.passable) {
 				var con:Connection = new Connection();
 				con.fromNode = current;
 				con.toNode = current.node.getLeftTile();
 				open.push(con);
 			}
-			if (current.node.getRightTile()) {
+			
+			cur = current.node.getRightTile();
+			if (cur && (Math.abs(cur.groundHeight-current.node.groundHeight)<=1) && cur.passable) {
 				var con1:Connection = new Connection();
 				con1.fromNode = current;
 				con1.toNode = current.node.getRightTile();
 				open.push(con1);
 			}
-			if (current.node.getTopTile()) {
+			
+			cur = current.node.getTopTile();
+			if (cur && (Math.abs(cur.groundHeight-current.node.groundHeight)<=1) && cur.passable) {
 				var con2:Connection = new Connection();
 				con2.fromNode = current;
 				con2.toNode = current.node.getTopTile();
 				open.push(con2);
 			}
-			if (current.node.getBottomTile()) {
+			
+			cur = current.node.getBottomTile();
+			if (cur && (Math.abs(cur.groundHeight-current.node.groundHeight)<=1) && cur.passable) {
 				var con3:Connection = new Connection();
 				con3.fromNode = current;
 				con3.toNode = current.node.getBottomTile();
@@ -99,7 +106,7 @@ package utils.pathfinding
 		/**
 		 * Function to calculate the dijkstra path
 		 */
-		public static function pathDijkstra(graph:Vector.< GroundTile > , begin:GroundTile, end:GroundTile):Path {
+		public static function pathDijkstra(begin:GroundTile, end:GroundTile):Path {
 			var startrecord:NodeRecord;
 			startrecord = new NodeRecord();
 			startrecord.node = begin;

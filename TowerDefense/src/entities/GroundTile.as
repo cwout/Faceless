@@ -81,22 +81,22 @@ package entities
 		
 		public function getLeftTile():GroundTile
 		{
-			return map.getGroundTile(gridX - 1, gridY);
+			return map.getGroundTile(this.gridX - 1, this.gridY);
 		}
 		
 		public function getRightTile():GroundTile
 		{
-			return map.getGroundTile(gridX + 1, gridY);
+			return map.getGroundTile(this.gridX + 1, this.gridY);
 		}
 		
 		public function getTopTile():GroundTile
 		{
-			return map.getGroundTile(gridX, gridY - 1);
+			return map.getGroundTile(this.gridX, this.gridY - 1);
 		}
 		
 		public function getBottomTile():GroundTile
 		{
-			return map.getGroundTile(gridX, gridY + 1);
+			return map.getGroundTile(this.gridX,this.gridY + 1);
 		}
 		
 		override public function render():void 

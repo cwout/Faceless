@@ -19,13 +19,13 @@ package worlds
 	{
 		public var map:Map = new Map();
 		//public var tower: BasicTower = new BasicTower;
-		public var testenemy: testen = new testen(map);
+		public var testenemy: testen;
 		
 		
 		public var done:Boolean = false;
 		public function TestWorld() 
 		{
-
+			testenemy = new testen(map);
 		}
 		
 		override public function begin():void 

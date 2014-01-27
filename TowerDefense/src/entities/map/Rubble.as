@@ -13,6 +13,7 @@ package entities.map
 		public function Rubble(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0)
 		{
 			super(map, x, y, groundHeight);
+			this.passable = false;
 		}
 		
 		override public function added():void 
