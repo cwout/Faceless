@@ -34,6 +34,9 @@ package entities.gui
 		 */
 		public static function initWithMap(mapVar: Map): void
 		{
+			//we add the minimap
+			FP.world.add(new GuiMinimap());
+			
 			//initialize the main GUI-button
 			FP.world.add(new GuiTrigger());
 			
