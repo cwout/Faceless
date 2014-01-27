@@ -88,7 +88,7 @@ package entities.gui
 			{
 				if (Gui.map.getGroundTile(tileX, tileY).placeable)
 				{
-					var boolean: pathsExist = true;
+					var pathsExist:Boolean = true;
 					
 					var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
 					var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
