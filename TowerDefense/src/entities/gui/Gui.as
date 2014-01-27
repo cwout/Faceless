@@ -93,7 +93,7 @@ package entities.gui
 					var wasPassable: Boolean = Gui.map.getGroundTile(tileX, tileY).passable;
 					Gui.map.getGroundTile(tileX, tileY).passable = false;
 				
-					var enemyList : Array = [];
+					var enemyList : Array = new Array();
 					FP.world.getClass(EnemyTemplate, enemyList);
 					for each (var enemy:EnemyTemplate in enemyList)
 					{
@@ -108,6 +108,13 @@ package entities.gui
 						var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
 						map.addTower(tileX, tileY);
 						guiTowerSelectedOverlay.doNotSelectNextFrame();
+					}
+					else
+					{
+						for each (var enemy:EnemyTemplate in enemyList)
+						{
+							enemy.updatePath();
+						}
 					}
 
 				}
