@@ -1,44 +1,43 @@
 package entities.gui 
 {
-	import flash.display.PixelSnapping;
-	import net.flashpunk.masks.Pixelmask;
+	
 	import net.flashpunk.graphics.Image;
+	import net.flashpunk.masks.Pixelmask;
+	
 	/**
-	 * A button for adding a tower
+	 * Button to toggle
 	 * @author Wout Coenen
 	 */
-	public class GuiButtonAddTower extends GuiButton
+	public class GuiButtonToggleDebug extends GuiButton
 	{
 		
-		public function GuiButtonAddTower(eventFunction: Function, posX: int, posY: int) 
+		public function GuiButtonToggleDebug(posX: int, posY: int) 
 		{
-		
-			super(eventFunction, posX, posY);
-		
+			super(Gui.eventHandler, posX, posY);
 		}
-		
+			
 		/**
 		 * Sets the image and the idString (for event handling)
 		 */
 		override public function added(): void
 		{
 			
-			image = new Image(Assets.GUISMALLBUTTONADDTOWER);
+			image = new Image(Assets.GUISMALLBUTTONTOGGLEDEBUG);
 			graphic = image;
 			sizeX = image.width;
 			sizeY = image.height;
 			image.centerOrigin();
 			image.scrollX = 0;
 			image.scrollY = 0;
-			mask = new Pixelmask(Assets.GUISMALLBUTTONADDTOWER, -(sizeX / 2), -(sizeY / 2));
+			mask = new Pixelmask(Assets.GUISMALLBUTTONTOGGLEDEBUG, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
 			
-			imagePressed = new Image(Assets.GUISMALLBUTTONADDTOWER_PRESSED);
+			imagePressed = new Image(Assets.GUISMALLBUTTONTOGGLEDEBUG_PRESSED);
 			imagePressed.centerOrigin();
 			imagePressed.scrollX = 0;
 			imagePressed.scrollY = 0;
 			
-			idString = "GuiButtonAddTower";
+			idString = "ToggleDebug";
 			
 		}
 		

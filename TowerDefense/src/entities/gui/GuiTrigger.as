@@ -1,5 +1,6 @@
 package entities.gui 
 {
+	import entities.towers.BasicTower;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
@@ -34,6 +35,8 @@ package entities.gui
 			image.centerOrigin();
 			x = FP.width - (sizeX / 2);
 			y = FP.height - (sizeY / 2);
+			image.scrollX = 0;
+			image.scrollY = 0;
 			layer = References.GUILAYER;
 			mask = new Pixelmask(Assets.GUITRIGGER, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
@@ -45,10 +48,10 @@ package entities.gui
 			
 			if (Input.mousePressed)
 			{
-			if (collidePoint(x, y, Input.mouseX, Input.mouseY))
-			{	
-				Gui.triggerMenuSmall(sizeX, sizeY);
-			}
+				if (collidePoint(x, y, Input.mouseX, Input.mouseY))
+				{	
+					Gui.triggerMenuSmall(sizeX, sizeY);
+				}
 			}
 			
 		}

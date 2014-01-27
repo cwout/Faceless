@@ -4,8 +4,6 @@ package entities.gui
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import entities.towers.BasicTower;
-	import net.flashpunk.World;
-	import worlds.TestWorld;
 	
 	/**
 	 * main Gui-class, every other class has to call this one to interact with the GUI
@@ -15,9 +13,11 @@ package entities.gui
 	public class Gui
 	{
 		
-		private static var funcP: Function = clickedMenuSmall;
+		private static var funcP: Function = eventHandler;
 		private static var useCustomCursor: Boolean = false;
 		public static var map: Map;
+		private static var debugEnabled: Boolean;
+		private static var guiTowerSelectedOverlay:GuiTowerSelectedOverlay = new GuiTowerSelectedOverlay();
 		
 		/**
 		 * Call this method to initialize the GUI
@@ -35,6 +35,9 @@ package entities.gui
 		 */
 		public static function initWithMap(mapVar: Map): void
 		{
+			//we add the minimap
+			FP.world.add(new GuiMinimap());
+			
 			//initialize the main GUI-button
 			FP.world.add(new GuiTrigger());
 			
@@ -46,6 +49,11 @@ package entities.gui
 			
 			//add a var for the map
 			map = mapVar;
+			
+			FP.world.add(guiTowerSelectedOverlay);
+			
+			FP.console.enable();
+			debugEnabled = true;
 			
 		}
 		
@@ -66,26 +74,42 @@ package entities.gui
 		 * triggered when a button has been clicked on the small menu
 		 * @param	idString the String-identifier of the clicked button
 		 */
-		public static function clickedMenuSmall(idString: String): void
+		public static function eventHandler(idString: String): void
 		{
+			//DEBUG LINE
 			trace (idString);
 			
 			if (idString == "GuiButtonAddTower")
 			{
 				FP.world.add(new GuiNewTowerOverlay(funcP));
 			}
-			if (idString == "AddTower")
+			else if (idString == "AddTower")
 			{
 				var tempTower: BasicTower;
 				var height: int = 0;
-				var tileX: int = Input.mouseX / References.TILESIZE;
-				var tileY: int = Input.mouseY / References.TILESIZE;
+				var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+				var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
 				if (map.mapData != null)
 					height = map.getGroundTile(tileX, tileY).groundHeight;
 				tempTower = new BasicTower(null, tileX, tileY, height);
 				FP.world.remove(map.getGroundTile(tileX, tileY));
 				FP.world.add(tempTower);
 				map.setGroundTile(tileX, tileY, tempTower);
+				guiTowerSelectedOverlay.doNotSelectNextFrame();
+			}
+			else if (idString == "ToggleDebug")
+			{
+				if (debugEnabled)
+				{
+					debugEnabled = false;
+					FP.console.visible = false;
+				}
+				else
+				{
+					debugEnabled = true;
+					FP.console.visible = true;
+				}
+		
 			}
 			
 		}

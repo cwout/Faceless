@@ -38,15 +38,15 @@ package entities.gui
 			image.centerOrigin();
 			x = FP.width - (triggerSizeX + sizeX / 2);
 			y = FP.height - (triggerSizeY + sizeY / 2);
+			image.scrollX = 0;
+			image.scrollY = 0;
 			layer = References.GUILAYER;
 			
 			//Add buttons here, add them in the same way as shown and change the buttonCount
-			buttonCount = 4;
+			buttonCount = 2;
 			var i: int = 1;
 			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
-			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
-			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
-			FP.world.add(new GuiButtonAddTower(eventFunction, x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
+			FP.world.add(new GuiButtonToggleDebug(x - sizeX / 2 + sizeX / (buttonCount + 1) * i++, y));
 			
 		}
 		

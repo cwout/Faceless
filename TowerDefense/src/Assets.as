@@ -25,7 +25,8 @@ package
 		[Embed(source = "assets/snow.png")] public static const SNOW : Class;
 		[Embed(source = "assets/mud.png")] public static const MUD : Class;
 		[Embed(source="assets/mudgrass.png")] public static const MUDGRASS : Class;
-		[Embed(source="assets/abyss.png")] public static const ABYSS : Class;
+		[Embed(source = "assets/abyss.png")] public static const ABYSS : Class;
+		[Embed(source = "assets/rubble.png")] public static const RUBBLE : Class;
 		
 		//GUI GRAPHICS
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;
@@ -33,6 +34,8 @@ package
 		[Embed(source = "assets/CustomCursor.png")] public static const CUSTOMCURSOR : Class;
 		[Embed(source = "assets/addTowerOverlay.png")] public static const GUIADDTOWEROVERLAY : Class;
 		//GUI BUTTON GRAPHICS
+		[Embed(source = "assets/MenuButtonToggleDebug.png")] public static const GUISMALLBUTTONTOGGLEDEBUG: Class;
+		[Embed(source = "assets/MenuButtonToggleDebugPressed.png")] public static const GUISMALLBUTTONTOGGLEDEBUG_PRESSED: Class;
 		[Embed(source = "assets/MenuButtonAddTower.png")] public static const GUISMALLBUTTONADDTOWER: Class;
 		[Embed(source = "assets/MenuButtonAddTowerPressed.png")] public static const GUISMALLBUTTONADDTOWER_PRESSED: Class;
 		

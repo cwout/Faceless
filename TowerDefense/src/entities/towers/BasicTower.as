@@ -3,6 +3,7 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
+	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -32,7 +33,9 @@ package entities.towers
 		//Constructor
 		public function BasicTower(map : Map, x : int, y : int, height : int ) 
 		{
-			super(map, x, y ,height);
+			super(map, x, y , height);
+			this.placeable = false;
+			this.passable = false;
 		}
 		
 		override public function added():void 
@@ -74,11 +77,9 @@ package entities.towers
 			
 			if (Input.check(Key.DOWN)) {
 				this.y += 220 * FP.elapsed;
-			}
-			
-			if (Input.check(Key.SPACE)) {
-				
 			}*/
+			
+			
 			//End test purposes
 			
 			//De cooldown van de toren verlagen als hij hoger dan 0 is
@@ -93,6 +94,7 @@ package entities.towers
 			var time: Number;
 			//End vars
 			
+			world.getClass(TestEnemy, Object);
 
 			//De afstand berekenen tussen tower en enemy
 			distance = FP.distance(this.x, this.y, x, y);
