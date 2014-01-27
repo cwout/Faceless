@@ -77,7 +77,6 @@ package entities.testenemy
 		public function usePath():void {
 			//change facing
 			facing = path.getDirection(this.xmap, this.ymap);
-			trace(facing);
 		}
 		
 		/**
@@ -102,7 +101,6 @@ package entities.testenemy
 			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
-				trace(xmap, " ", ymap);
 				this.xmap = xnew;
 				this.ymap = ynew;
 				usePath();
