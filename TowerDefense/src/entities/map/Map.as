@@ -111,11 +111,15 @@ package entities.map
 		
 		public function addTower(x : int, y : int):void
 		{
-				var tile : GroundTile = map.getGroundTile(tileX, tileY);
-				tempTower = new BasicTower(null, tileX, tileY, height);
-				FP.world.remove(map.getGroundTile(tileX, tileY));
+				var tile : GroundTile = getGroundTile(x, y);
+				
+				var tempTower  : BasicTower = new BasicTower(null, x, y, tile.height);
+				
+				FP.world.remove(tile);
+				
 				FP.world.add(tempTower);
-				map.setGroundTile(tileX, tileY, tempTower);
+				
+				setGroundTile(x, y, tempTower);
 		}
 		
 		/**
