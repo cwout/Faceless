@@ -135,7 +135,7 @@ package entities.towers
 			var i: int;
 			var precision: int = 30;
 			//De verwachte x en y waarden verhogen a.d.h.v. enemyHoek * enemySpeed * de tijd die de bal er over moet doen
-			for (i = 0; i < 50; i++) {
+			for (i = 0; i < 5; i++) {
 				newx = x;
 				newy = y;
 				
