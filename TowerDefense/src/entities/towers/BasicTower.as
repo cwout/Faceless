@@ -3,6 +3,7 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
+	import entities.testenemy.EnemyTemplate;
 	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
@@ -92,6 +93,10 @@ package entities.towers
 		
 		public function shoot(x : int, y : int, objectSpeed : int, objectAngle : Number):void 
 		{	
+			var enemies : Vector.<EnemyTemplate>;
+			
+			world.getClass(EnemyTemplate, enemies);
+			
 			//Vars
 			var distance: Number;
 			var time: Number;

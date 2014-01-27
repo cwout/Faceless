@@ -35,6 +35,9 @@ package entities.gui
 		 */
 		public static function initWithMap(mapVar: Map): void
 		{
+			//add a var for the map
+			map = mapVar;
+			
 			//we add the minimap
 			FP.world.add(new GuiMinimap());
 			
@@ -46,9 +49,6 @@ package entities.gui
 			{
 				FP.world.add(new CustomCursor());
 			}
-			
-			//add a var for the map
-			map = mapVar;
 			
 			FP.world.add(guiTowerSelectedOverlay);
 			
