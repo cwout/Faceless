@@ -91,7 +91,7 @@ package entities.towers
 			
 		
 				
-		public function shoot(x : int, y : int, objectSpeed : int, objectAngle : Number):void 
+		private function shoot(x : int, y : int, objectSpeed : int, objectAngle : Number):void 
 		{	
 			var enemies : Vector.<EnemyTemplate>;
 			
@@ -138,7 +138,7 @@ package entities.towers
 				image.angle = 180 + ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
 			//Als de toren van zijn cooldown af is mag hij schieten
 			if(this.cooldown <= 0) {
-				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, damage));
+				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, damage, this.groundHeight));
 				//Cooldown resetten
 				this.cooldown = 60;
 			}

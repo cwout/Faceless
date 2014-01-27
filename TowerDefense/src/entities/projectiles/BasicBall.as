@@ -3,6 +3,7 @@ package entities.projectiles
 	import entities.map.Map;
 	import entities.testenemy.EnemyTemplate;
 	import flash.automation.KeyboardAutomationAction;
+	import flash.display.InteractiveObject;
 	import flash.events.DRMCustomProperties;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -10,6 +11,7 @@ package entities.projectiles
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.Mask;
 	import entities.gui.Gui;
+	import net.flashpunk.World;
 	
 	/**
 	 * ...
@@ -21,8 +23,9 @@ package entities.projectiles
 		public var image: Image;
 		public var speed: Number;
 		public var angle: Number;
+		public var ballHeight: int;
 		
-		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damge: Number)
+		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damge: Number, givenHeight: int)
 		{
 			this.layer = References.PROJECTILELAYER;
 			//De speed updaten naar de gewenste speed (Nodig voor update functie)
@@ -31,6 +34,8 @@ package entities.projectiles
 			this.angle = angle *= FP.RAD;
 			//Doorgegeven damage toevoegen;
 			this.damage = damage;
+			//Doorgeven Height
+			this.ballHeight = givenHeight;
 	
 			//Berekende start positie a.d.h.v. berekende lengte van de 'loop' FUCKING GONIOMETRIE
 			this.x = x + (width * (Math.cos(this.angle)));
@@ -67,6 +72,13 @@ package entities.projectiles
 				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < 7)
 					hit();
 			}
+			
+			
+			map = FP.world.getInstance("map");
+			trace(map);
+			
+			if (map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)).groundHeight > ballHeight)
+				die();
 		}
 		
 		private function die(): void {
