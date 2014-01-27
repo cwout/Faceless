@@ -4,7 +4,6 @@ package entities.towers
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
 
-
 	import entities.testenemy.testen;
 	import entities.testenemy.EnemyTemplate;
 
@@ -13,6 +12,8 @@ package entities.towers
 
 	import entities.testenemy.testen;
 	import entities.testenemy.EnemyTemplate;
+
+	import entities.testenemy.testen;
 
 	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
