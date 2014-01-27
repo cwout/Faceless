@@ -3,6 +3,7 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
+	import flash.display.InteractiveObject;
 
 	import entities.testenemy.EnemyTemplate;
 	
@@ -30,7 +31,7 @@ package entities.towers
 		public var cooldown: int = 0;
 		//De damage van de projectitelen
 		public var damage: Number = 20;
-		
+		public var aspd: Number = 1;
 		public var image : Image;
 		
 		//Constructor
@@ -61,9 +62,11 @@ package entities.towers
 				this.ballspeed += 100;
 			}
 			if (Input.check(Key.B)) {
-				this.range += 100;
+				this.range += 10;
 			}
-			
+			if (Input.check(Key.C)) {
+				this.aspd++;
+			}
 			
 			
 			
@@ -71,7 +74,7 @@ package entities.towers
 			
 			//De cooldown van de toren verlagen als hij hoger dan 0 is
 			if(this.cooldown > 0)
-				this.cooldown -= 1 * FP.elapsed;
+				this.cooldown -= aspd * FP.elapsed;
 				
 				
 			var enemyList : Array = [];
@@ -134,10 +137,10 @@ package entities.towers
 			else
 				image.angle = 180 + ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
 			//Als de toren van zijn cooldown af is mag hij schieten
-			if(this.cooldown == 0) {
+			if(this.cooldown <= 0) {
 				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, damage));
 				//Cooldown resetten
-				this.cooldown = 30;
+				this.cooldown = 60;
 			}
 		}
 	}

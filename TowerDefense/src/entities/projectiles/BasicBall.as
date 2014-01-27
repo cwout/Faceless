@@ -1,6 +1,7 @@
 package entities.projectiles 
 {
 	import entities.map.Map;
+	import entities.testenemy.EnemyTemplate;
 	import flash.automation.KeyboardAutomationAction;
 	import flash.events.DRMCustomProperties;
 	import net.flashpunk.Entity;
@@ -56,10 +57,24 @@ package entities.projectiles
 			{
 				die();
 			}
+	
+			var enemyList : Array = [];
+
+			// Then, we populate the array with all existing Enemy objects!
+			FP.world.getClass(EnemyTemplate, enemyList);
+			
+			for each (var enemy:EnemyTemplate in enemyList) {
+				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < 7)
+					hit();
+			}
 		}
 		
 		private function die(): void {
 			FP.world.remove(this);
+		}
+		
+		private function hit(): void {
+			die();
 		}
 		
 		
