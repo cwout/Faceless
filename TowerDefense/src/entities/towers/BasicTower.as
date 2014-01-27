@@ -67,28 +67,14 @@ package entities.towers
 		{
 		
 			//Test Purposes
-			/*if (Input.check(Key.A)) {
-				image.angle += 5;
+			if (Input.check(Key.A)) {
+				this.ballspeed += 100;
 			}
-			if (Input.check(Key.E)) {
-				image.angle -= 5;
-			}
-			
-			if (Input.check(Key.LEFT)) {
-				this.x -= 220 * FP.elapsed;
+			if (Input.check(Key.B)) {
+				this.range += 100;
 			}
 			
-			if (Input.check(Key.RIGHT)) {
-				this.x += 220 * FP.elapsed;
-			}
 			
-			if (Input.check(Key.UP)) {
-				this.y -= 220 * FP.elapsed;
-			}
-			
-			if (Input.check(Key.DOWN)) {
-				this.y += 220 * FP.elapsed;
-			}*/
 			
 			
 			//End test purposes
@@ -135,7 +121,7 @@ package entities.towers
 			var i: int;
 			var precision: int = 30;
 			//De verwachte x en y waarden verhogen a.d.h.v. enemyHoek * enemySpeed * de tijd die de bal er over moet doen
-			for (i = 0; i < 5; i++) {
+			for (i = 0; i < 50; i++) {
 				newx = x;
 				newy = y;
 				
