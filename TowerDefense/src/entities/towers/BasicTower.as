@@ -53,8 +53,6 @@ package entities.towers
 		
 		override public function added():void 
 		{
-			//Toren op de voorgrond van het scherm zetten
-			this.layer = -5000;
 			//De image van de toren inladen
 			super.added();
 			image = new Image(Assets.BASICTOWER);
