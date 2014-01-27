@@ -49,10 +49,6 @@ package entities.testenemy
 			this.x = 800;
 		}
 		
-		public function isInRange(x : int, y : int):Boolean {
-			return(true);
-		}
-		
 		private function move():void 
 		{
 			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
