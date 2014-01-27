@@ -3,11 +3,8 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
-<<<<<<< HEAD
 	import entities.testenemy.testen;
-=======
 	import entities.testenemy.EnemyTemplate;
->>>>>>> c82c62520b72222bae2956ed53f6ee88cff99f56
 	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
