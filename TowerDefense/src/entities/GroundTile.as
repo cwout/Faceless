@@ -96,6 +96,20 @@ package entities
 			return map.getGroundTile(gridX, gridY + 1);
 		}
 		
+		override public function render():void 
+		{
+			var bx : int = FP.camera.x;
+			var by : int = FP.camera.y;
+			
+			FP.camera.x = Math.floor(FP.camera.x);
+			FP.camera.y = Math.floor(FP.camera.y);
+			
+			super.render();
+			
+			FP.camera.x = bx;
+			FP.camera.y = by;
+		}
+		
 	}
 
 }
