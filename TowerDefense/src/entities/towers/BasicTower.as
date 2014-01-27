@@ -3,6 +3,7 @@ package entities.towers
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
+	import entities.testenemy.testen;
 	import entities.testenemy.TestEnemy;
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
@@ -12,6 +13,7 @@ package entities.towers
 	import net.flashpunk.Mask;
 	import net.flashpunk.utils.Input; 
 	import net.flashpunk.utils.Key;
+	import worlds.TestWorld;
 	
 	/**
 	 * ...
@@ -20,7 +22,7 @@ package entities.towers
 	public class BasicTower extends GroundTile
 	{
 		//Range van de toren
-		public var range: int = 100;
+		public var range: int = 500;
 		//De snelheid van de bal die wordt afgevuurd
 		public var ballspeed: int = 500;
 		//De fire cooldown
@@ -85,8 +87,22 @@ package entities.towers
 			//De cooldown van de toren verlagen als hij hoger dan 0 is
 			if(this.cooldown > 0)
 				this.cooldown -= 1 * FP.elapsed;
+				
+				
+			var enemyList : Array = [];
+
+			// Then, we populate the array with all existing Enemy objects!
+			FP.world.getClass(testen, enemyList);
+
+			// Finally, we can loop through the array and call each Enemy's die() function.
+			for each (var enemy:testen in enemyList) {
+				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < this.range)
+					shoot(enemy.x, enemy.y, enemy.speed, enemy.angle);
+			}
 		}
+			
 		
+				
 		public function shoot(x : int, y : int, objectSpeed : int, objectAngle : Number):void 
 		{	
 			//Vars

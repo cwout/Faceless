@@ -21,10 +21,10 @@ package entities.testenemy
 	public class EnemyTemplate extends Entity
 	{
 		private var image : Image;
-		private var speed : int = 50;
+		public var speed : int = 50;
 		protected var health : Number = 100;
 		private var facing : int = 5;
-		private var angle : Number = 180 * FP.RAD;
+		public var angle : Number = 180 * FP.RAD;
 		
 		private var map:Map;
 		
