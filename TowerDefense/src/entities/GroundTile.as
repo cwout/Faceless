@@ -27,12 +27,14 @@ package entities
 		//whether or not enemies can move through this tile
 		public var passable : Boolean = true;
 		
+		//whether or not this piece of the ground can be replaced
+		public var placeable : Boolean = true;
+		
 		//the tile which corresponds to this 
 		public var groundTile : GroundTile = null;
 		
 		//the map on which this is located
 		public var map : Map = null;
-			
 		
 		public function GroundTile(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0)
 		{

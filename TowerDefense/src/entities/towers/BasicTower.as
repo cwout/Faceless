@@ -32,7 +32,9 @@ package entities.towers
 		//Constructor
 		public function BasicTower(map : Map, x : int, y : int, height : int ) 
 		{
-			super(map, x, y ,height);
+			super(map, x, y , height);
+			this.placeable = false;
+			this.passable = false;
 		}
 		
 		override public function added():void 
@@ -93,6 +95,7 @@ package entities.towers
 			var time: Number;
 			//End vars
 			
+			world.getClass(TestEnemy, Object);
 
 			//De afstand berekenen tussen tower en enemy
 			distance = FP.distance(this.x, this.y, x, y);
