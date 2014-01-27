@@ -75,7 +75,6 @@ package entities.projectiles
 			
 			
 			map = FP.world.getInstance("map");
-			trace(map);
 			
 			if (map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)).groundHeight > ballHeight)
 				die();
