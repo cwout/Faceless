@@ -34,6 +34,7 @@ package entities.testenemy
 		private var path:Path;
 		
 		private var bool:Boolean = true;
+		private var endloc:Vector.<int>;
 		
 		public function EnemyTemplate(sp:int, img:Class, map:Map) {
 			set_speed(sp);
@@ -41,21 +42,32 @@ package entities.testenemy
 			set_size(1, 1);
 			
 			this.map = map;
+			//sets the end loc
+			setEndLoc(19, 19);
 		}
 		
 		override public function added():void {
 			this.layer = References.ENEMYLAYER;
+			//sets the beginning loc
 			set_position(2, 2);
 			
-			calcPath(19,19);
+			updatePath();
 		}
 		
 		/**
 		 * calculate a path
 		 */
-		public function calcPath(x:int, y:int):void {
-			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
+		public function calcPath(x:int, y:int):Boolean {
+			var status:Boolean = false;
+			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
+			if (p) {
+				path = p;
+				status = true;
+			}
+
 			usePath();
+			
+			return status;
 		}
 		
 		/**
@@ -99,12 +111,14 @@ package entities.testenemy
 			}
 			else {
 				if (bool) {
-					calcPath(2, 2);
+					setEndLoc(2, 2);
+					updatePath();
 					bool = false;
 				}
 				else {
 					bool = true;
-					calcPath(19,19);
+					setEndLoc(19, 19);
+					updatePath();
 				}
 			}
 			inTileRange();
@@ -207,8 +221,29 @@ package entities.testenemy
 		 */
 		private function resetImg():void {
 			this.image.centerOrigin();
-			this.image.scaledWidth = width;
-			this.image.scaledHeight = height;
+			set_imgSize(2 / 3);
+		}
+		
+		/**
+		 * update the path
+		 */
+		public function updatePath():Boolean {
+			return calcPath(endloc[0], endloc[1]);
+		}
+		
+		public function setEndLoc(x:int, y:int):void {
+			endloc = new Vector.<int>();
+			endloc.push(x);
+			endloc.push(y);
+		}
+		
+		/**
+		 * set the image size
+		 * @param	nb
+		 */
+		public function set_imgSize(nb:Number):void {
+			this.image.scaledWidth = nb * width;
+			this.image.scaledHeight = nb * height;
 		}
 	}
 

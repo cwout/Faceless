@@ -3,12 +3,12 @@ package entities.testenemy
 	import entities.map.Map;
 	/**
 	 * ...
-	 * @author ...
+	 * @author Axel Faes
 	 */
-	public class testen extends EnemyTemplate
+	public class FirstEnemy extends EnemyTemplate
 	{
 		
-		public function testen(map:Map) 
+		public function FirstEnemy(map:Map) 
 		{
 			super(50, Assets.TestEnemy, map);
 		}

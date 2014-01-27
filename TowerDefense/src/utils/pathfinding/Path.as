@@ -1,7 +1,7 @@
 package utils.pathfinding 
 {
 	import entities.GroundTile;
-	import entities.testenemy.TestEnemy;
+	import entities.testenemy.EnemyTemplate;
 	
 	/**
 	 * ...

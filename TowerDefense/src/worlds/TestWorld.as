@@ -2,8 +2,7 @@ package worlds
 {
 	import entities.GroundTile;
 	import entities.map.Map;
-	import entities.testenemy.testen;
-	import entities.testenemy.TestEnemy;
+	import entities.testenemy.FirstEnemy;
 	import entities.towers.BasicTower;
 	import net.flashpunk.World;
 	import utils.pathfinding.Path;
@@ -19,13 +18,13 @@ package worlds
 	{
 		public var map:Map = new Map();
 		//public var tower: BasicTower = new BasicTower;
-		public var testenemy: testen;
+		public var testenemy: FirstEnemy;
 		
 		
 		public var done:Boolean = false;
 		public function TestWorld() 
 		{
-			testenemy = new testen(map);
+			testenemy = new FirstEnemy(map);
 		}
 		
 		override public function begin():void 
