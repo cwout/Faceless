@@ -35,7 +35,6 @@ package entities.gui
 					data.setPixel(i, k, (3 + tile.groundHeight) * 0x1C1C1C);
 				}
 			}
-			
 			image = new Image(data);
 			image.scale = 4;
 			image.scrollX = 0;

@@ -56,9 +56,6 @@ package entities.map
 					//we create a new groundtile
 					var groundTile : GroundTile = new GroundTile(this, tilex, tiley, parseInt(tile.@id));
 					
-					//we add them to the world
-					world.add(groundTile);
-					
 					//and put them in the array
 					mapData[tilex + tiley * mapWidth] = groundTile;	
 			}
@@ -78,8 +75,11 @@ package entities.map
 						setGroundTile(tilex, tiley, newthing);
 						world.add(newthing);
 						world.remove(newtile);
-					}
-				
+					}	
+			}
+			//now we add all maps to the world
+			for (var i : int = 0 ; i < mapWidth * mapHeight ; i++) {
+				FP.world.add(mapData[i] as Entity);
 			}
 			
 		}
@@ -113,7 +113,7 @@ package entities.map
 		{
 				var tile : GroundTile = getGroundTile(x, y);
 				
-				var tempTower  : BasicTower = new BasicTower(this, x, y, tile.groundHeight);
+				var tempTower  : BasicTower = new BasicTower(this, x, y, tile.groundHeight);	
 				
 				FP.world.remove(tile);
 				

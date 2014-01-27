@@ -27,6 +27,7 @@ package
 		[Embed(source="assets/mudgrass.png")] public static const MUDGRASS : Class;
 		[Embed(source = "assets/abyss.png")] public static const ABYSS : Class;
 		[Embed(source = "assets/rubble.png")] public static const RUBBLE : Class;
+		[Embed(source = "assets/shadow.png")] public static const SHADOW : Class;
 		
 		//GUI GRAPHICS
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;

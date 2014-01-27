@@ -1,10 +1,13 @@
 package entities 
 {
 	import entities.map.Map;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.graphics.TiledImage;
 	
 	/**
 	 * ...
@@ -75,8 +78,55 @@ package entities
 			}
 			(this.graphic as Spritemap).centerOrigin();
 			(this.graphic as Spritemap).frame = Math.random() * 4;
+			
+			makeShadow();
 			//(this.graphic as Image).angle = Math.floor(Math.random()*4)*90;
 			//(this.graphic as Image).color = 0x222222 + 0x1D1D1D * (1+groundHeight);//Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
+		}
+		
+		public function makeShadow() : void
+		{
+			var shadow : Spritemap = new Spritemap(Assets.SHADOW, 40, 40);
+			var ground : Image = this.graphic as Image;
+			
+			var source : Rectangle = new Rectangle(0, 0, 40, 40);
+			var p : Point = new Point(0, 0);
+			var sp : Point = new Point(0, 0);
+			
+			var tile : GroundTile;
+			
+			//the topmost tile;
+			tile = map.getGroundTile(gridX, gridY - 1);
+			if (tile != null && tile.groundHeight > groundHeight) {
+				shadow.setFrame(1, 0);
+				trace(tile.groundHeight);
+				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			//the bottom tile;
+			tile = map.getGroundTile(gridX, gridY + 1);
+			if (tile != null && tile.groundHeight > groundHeight) {
+				shadow.setFrame(3, 0);
+				trace(tile.groundHeight);
+				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			//the left tile;
+			tile = map.getGroundTile(gridX -1 , gridY);
+			if (tile != null && tile.groundHeight > groundHeight) {
+				shadow.setFrame(2, 0);
+				trace(tile.groundHeight);
+				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			//the left tile;
+			tile = map.getGroundTile(gridX + 1 , gridY);
+			if (tile != null && tile.groundHeight > groundHeight) {
+				shadow.setFrame(0, 0);
+				trace(tile.groundHeight);
+				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
 		}
 		
 		public function getLeftTile():GroundTile
