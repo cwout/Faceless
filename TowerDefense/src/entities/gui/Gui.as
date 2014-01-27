@@ -4,8 +4,6 @@ package entities.gui
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
 	import entities.towers.BasicTower;
-	import net.flashpunk.World;
-	import worlds.TestWorld;
 	
 	/**
 	 * main Gui-class, every other class has to call this one to interact with the GUI
@@ -46,6 +44,8 @@ package entities.gui
 			
 			//add a var for the map
 			map = mapVar;
+			
+			FP.world.add(new GuiTowerSelectedOverlay());
 			
 		}
 		

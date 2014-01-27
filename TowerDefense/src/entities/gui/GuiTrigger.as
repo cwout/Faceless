@@ -1,5 +1,6 @@
 package entities.gui 
 {
+	import entities.towers.BasicTower;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Image;
@@ -47,10 +48,10 @@ package entities.gui
 			
 			if (Input.mousePressed)
 			{
-			if (collidePoint(x, y, Input.mouseX, Input.mouseY))
-			{	
-				Gui.triggerMenuSmall(sizeX, sizeY);
-			}
+				if (collidePoint(x, y, Input.mouseX, Input.mouseY))
+				{	
+					Gui.triggerMenuSmall(sizeX, sizeY);
+				}
 			}
 			
 		}
