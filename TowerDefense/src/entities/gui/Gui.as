@@ -110,6 +110,13 @@ package entities.gui
 						map.addTower(tileX, tileY);
 						guiTowerSelectedOverlay.doNotSelectNextFrame();
 					}
+					else
+					{
+						for each (var enemy:EnemyTemplate in enemyList)
+						{
+							enemy.updatePath();
+						}
+					}
 
 				}
 			}
