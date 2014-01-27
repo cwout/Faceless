@@ -33,7 +33,7 @@ package entities.towers
 	public class BasicTower extends GroundTile
 	{
 		//Range van de toren
-		public var range: int = 500;
+		public var range: int = 200;
 		//De snelheid van de bal die wordt afgevuurd
 		public var ballspeed: int = 500;
 		//De fire cooldown
@@ -135,7 +135,7 @@ package entities.towers
 			var i: int;
 			var precision: int = 30;
 			//De verwachte x en y waarden verhogen a.d.h.v. enemyHoek * enemySpeed * de tijd die de bal er over moet doen
-			for (i = 0; i < 2; i++) {
+			for (i = 0; i < 50; i++) {
 				newx = x;
 				newy = y;
 				
@@ -149,7 +149,7 @@ package entities.towers
 			}
 			
 			x += ((objectSpeed) * (Math.cos(objectAngle))) * time;
-			x += ((objectSpeed) * (Math.sin(objectAngle))) * time;
+			y += ((objectSpeed) * (Math.sin(objectAngle))) * time;
 			
 			//Als het object zich rechts van ons bevind 
 			if(x >= this.x)
