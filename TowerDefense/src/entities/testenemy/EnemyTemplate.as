@@ -83,8 +83,10 @@ package entities.testenemy
 		 */
 		private function move():void {
 			setFacing();
-			this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
-			this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			if (facing != 5){
+				this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
+				this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			}
 			inTileRange();
 			
 		}
