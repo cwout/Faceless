@@ -53,7 +53,7 @@ package entities.towers
 		{
 		
 			//Test Purposes
-			if (Input.check(Key.A)) {
+			/*if (Input.check(Key.A)) {
 				image.angle += 5;
 			}
 			if (Input.check(Key.E)) {
@@ -78,7 +78,7 @@ package entities.towers
 			
 			if (Input.check(Key.SPACE)) {
 				
-			}
+			}*/
 			//End test purposes
 			
 			//De cooldown van de toren verlagen als hij hoger dan 0 is
