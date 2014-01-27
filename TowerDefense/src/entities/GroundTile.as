@@ -21,7 +21,7 @@ package entities
 		
 		//the x position of this tile on the map
 		public var gridX : int = 0;
-		
+			
 		//the y position of this tile on the map
 		public var gridY : int = 0;
 		
