@@ -45,7 +45,7 @@ package entities.testenemy
 			this.layer = -5000;
 			set_position(6, 6);
 			
-			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(12, 3));
+			path = Pathfinding.pathDijkstra(map.mapData, map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(9, 2));
 		}
 		
 		/**
@@ -75,8 +75,7 @@ package entities.testenemy
 		 */
 		public function usePath():void {
 			//change facing
-			facing = path.getDirection(xmap, ymap);
-			trace(facing);
+			facing = path.getDirection(this.xmap, this.ymap);
 		}
 		
 		/**
@@ -99,9 +98,9 @@ package entities.testenemy
 			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
-				usePath();
 				this.xmap = xnew;
-				this.ymap = ynew
+				this.ymap = ynew;
+				usePath();
 			}
 		}
 		

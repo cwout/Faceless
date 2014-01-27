@@ -27,16 +27,16 @@ package utils.pathfinding
 				var ynew:int = path[currentNode].gridY;
 				
 				if (xnew < x) {
-					facing = 2;
+					facing = 2; //left
 				}
 				else if (xnew > x) {
-					facing = 0;
+					facing = 0; //right
 				}
-				if (ynew < y) {
-					facing = 3;
+				else if (ynew < y) {
+					facing = 1; //up
 				}
 				else if (ynew > y) {
-					facing = 1;
+					facing = 3; //down
 				}
 				
 				currentNode++;
