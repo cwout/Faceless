@@ -29,13 +29,13 @@ package utils.pathfinding
 				if (xnew < x) {
 					facing = 2; //left
 				}
-				else if (xnew > x) {
+				if (xnew > x) {
 					facing = 0; //right
 				}
-				else if (ynew < y) {
+				if (ynew < y) {
 					facing = 1; //up
 				}
-				else if (ynew > y) {
+				if (ynew > y) {
 					facing = 3; //down
 				}
 				

@@ -43,9 +43,10 @@ package entities.testenemy
 		
 		override public function added():void {
 			this.layer = -5000;
-			set_position(0, 0);
+			set_position(2, 6);
 			
-			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(5, 5));
+			path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(9, 3));
+			usePath();
 		}
 		
 		/**
@@ -76,6 +77,7 @@ package entities.testenemy
 		public function usePath():void {
 			//change facing
 			facing = path.getDirection(this.xmap, this.ymap);
+			trace(facing);
 		}
 		
 		/**
@@ -100,9 +102,11 @@ package entities.testenemy
 			var ynew:int = (this.y+this.height/2) / References.TILESIZE;
 			
 			if (xnew != this.xmap || ynew != this.ymap) {
+				trace(xmap, " ", ymap);
 				this.xmap = xnew;
 				this.ymap = ynew;
 				usePath();
+				
 			}
 		}
 		
