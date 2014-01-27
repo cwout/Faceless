@@ -4,18 +4,8 @@ package entities.towers
 	import entities.map.Map;
 	import entities.projectiles.BasicBall;
 
-	import entities.testenemy.testen;
 	import entities.testenemy.EnemyTemplate;
-
-	import entities.testenemy.testen;
-	import entities.testenemy.EnemyTemplate;
-
-	import entities.testenemy.testen;
-	import entities.testenemy.EnemyTemplate;
-
-	import entities.testenemy.testen;
-
-	import entities.testenemy.TestEnemy;
+	
 	import flash.ui.Mouse;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -87,10 +77,10 @@ package entities.towers
 			var enemyList : Array = [];
 
 			// Then, we populate the array with all existing Enemy objects!
-			FP.world.getClass(testen, enemyList);
+			FP.world.getClass(EnemyTemplate, enemyList);
 
 			// Finally, we can loop through the array and call each Enemy's die() function.
-			for each (var enemy:testen in enemyList) {
+			for each (var enemy:EnemyTemplate in enemyList) {
 				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < this.range)
 					shoot(enemy.x, enemy.y, enemy.speed, enemy.angle);
 			}
@@ -109,7 +99,7 @@ package entities.towers
 			var time: Number;
 			//End vars
 			
-			world.getClass(TestEnemy, Object);
+			world.getClass(EnemyTemplate, Object);
 
 			//De afstand berekenen tussen tower en enemy
 			distance = FP.distance(this.x, this.y, x, y);
