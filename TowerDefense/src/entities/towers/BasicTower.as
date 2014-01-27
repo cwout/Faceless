@@ -82,6 +82,7 @@ package entities.towers
 			if (Input.check(Key.SPACE)) {
 				
 			}
+			
 			//End test purposes
 			
 			//De cooldown van de toren verlagen als hij hoger dan 0 is
