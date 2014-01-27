@@ -28,8 +28,15 @@ package entities.gui
 			sizeX = image.width;
 			sizeY = image.height;
 			image.centerOrigin();
+			image.scrollX = 0;
+			image.scrollY = 0;
 			mask = new Pixelmask(Assets.GUISMALLBUTTONADDTOWER, -(sizeX / 2), -(sizeY / 2));
 			setHitboxTo(mask);
+			
+			imagePressed = new Image(Assets.GUISMALLBUTTONADDTOWER_PRESSED);
+			imagePressed.centerOrigin();
+			imagePressed.scrollX = 0;
+			imagePressed.scrollY = 0;
 			
 			idString = "GuiButtonAddTower";
 			
@@ -40,10 +47,7 @@ package entities.gui
 		 */
 		override public function onSelect(): void
 		{
-			image = new Image(Assets.GUISMALLBUTTONADDTOWER_PRESSED);
-			graphic = image;
-			sizeX = image.width;
-			sizeY = image.height;
+			graphic = imagePressed;
 			image.centerOrigin();
 		}
 		
@@ -52,10 +56,7 @@ package entities.gui
 		 */
 		override public function onDeselect(): void
 		{
-			image = new Image(Assets.GUISMALLBUTTONADDTOWER);
 			graphic = image;
-			sizeX = image.width;
-			sizeY = image.height;
 			image.centerOrigin();
 		}
 		

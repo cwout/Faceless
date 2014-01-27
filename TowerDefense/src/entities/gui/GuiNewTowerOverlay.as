@@ -1,5 +1,6 @@
 package entities.gui 
 {
+	import flash.events.IMEEvent;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.utils.Input;
@@ -30,12 +31,12 @@ package entities.gui
 			
 			image = new Image(Assets.GUIADDTOWEROVERLAY);
 			graphic = image;
-			image.blend = BlendMode.OVERLAY;
 			sizeX = image.height;
 			sizeY = image.width;
+			image.alpha = 0.4;
 			image.centerOrigin();
-			x = Input.mouseX % References.TILESIZE + 20;
-			y = Input.mouseY % References.TILESIZE + 20;
+			x = (Input.mouseX + FP.camera.x) % References.TILESIZE + 20;
+			y = (Input.mouseY + FP.camera.y) % References.TILESIZE + 20;
 			layer = References.GUILAYER;
 			setHitbox(-(References.TILESIZE / 2), -(References.TILESIZE / 2), References.TILESIZE, References.TILESIZE);
 			
@@ -44,12 +45,21 @@ package entities.gui
 		override public function update() : void
 		{
 			
-			x = Input.mouseX - (Input.mouseX % References.TILESIZE) + 20;
-			y = Input.mouseY - (Input.mouseY % References.TILESIZE) + 20;
+			x = (Input.mouseX + FP.camera.x) - ((Input.mouseX + FP.camera.x) % References.TILESIZE) + 20;
+			y = (Input.mouseY + FP.camera.y) - ((Input.mouseY + FP.camera.y) % References.TILESIZE) + 20;
+			var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+			var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
+			
+			//change overlay color
+			if (Gui.map.getGroundTile(tileX, tileY).placeable)
+				image.color = 0x77FF77;
+			else
+				image.color = 0xFF7777;
 			
 			if (Input.mouseReleased)
 			{
-				eventFunction("AddTower");
+				if (Gui.map.getGroundTile(tileX, tileY).placeable)
+					eventFunction("AddTower");
 				FP.world.remove(this);
 			}
 			else if (Input.check(Key.ESCAPE))

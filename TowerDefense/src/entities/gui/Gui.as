@@ -68,6 +68,7 @@ package entities.gui
 		 */
 		public static function clickedMenuSmall(idString: String): void
 		{
+			//DEBUG LINE
 			trace (idString);
 			
 			if (idString == "GuiButtonAddTower")
@@ -78,8 +79,8 @@ package entities.gui
 			{
 				var tempTower: BasicTower;
 				var height: int = 0;
-				var tileX: int = Input.mouseX / References.TILESIZE;
-				var tileY: int = Input.mouseY / References.TILESIZE;
+				var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
+				var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
 				if (map.mapData != null)
 					height = map.getGroundTile(tileX, tileY).groundHeight;
 				tempTower = new BasicTower(null, tileX, tileY, height);

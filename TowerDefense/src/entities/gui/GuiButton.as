@@ -17,6 +17,7 @@ package entities.gui
 		protected var sizeX: int;
 		protected var sizeY: int;
 		protected var image : Image;
+		protected var imagePressed: Image;
 		protected var idString: String;
 		protected var isSelected: Boolean = false;
 		
