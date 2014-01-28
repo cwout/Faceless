@@ -40,7 +40,7 @@
       </ScrollFactor>
       <ExportMode>XML</ExportMode>
     </LayerDefinition>
-    <LayerDefinition xsi:type="TileLayerDefinition">
+    <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Objects</Name>
       <Grid>
         <Width>40</Width>
@@ -50,7 +50,6 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <ExportMode>XML</ExportMode>
     </LayerDefinition>
   </LayerDefinitions>
   <Tilesets>
@@ -87,6 +86,42 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="Spawner" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>65</Width>
+        <Height>65</Height>
+      </Size>
+      <Origin>
+        <X>10</X>
+        <Y>10</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\src\assets\spawner.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="Interval" Default="1" Min="0" Max="100" ShowSlider="false" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="GoalX" Default="0" Min="0" Max="1000" ShowSlider="false" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="GoalY" Default="0" Min="0" Max="1000" ShowSlider="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="Castle" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>80</Width>
+        <Height>80</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\src\assets\castle.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="IntValueDefinition" Name="Health" Default="2000" Min="0" Max="999999" ShowSlider="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

@@ -22,6 +22,8 @@ package entities.map
 			var rock : Image = new Image(Assets.RUBBLE);
 			addGraphic(rock);
 			rock.centerOrigin();
+			rock.color = 0x1f1f1f * (groundHeight + 2);
+			trace(groundHeight + 3);
 			rock.angle = Math.random() * 360;
 			this.passable = false;
 			this.placeable = false;

@@ -1,10 +1,13 @@
 package entities 
 {
 	import entities.map.Map;
+	import flash.display.BitmapData;
+	import flash.display.Graphics;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
+	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.graphics.TiledImage;
@@ -40,13 +43,19 @@ package entities
 		//the map on which this is located
 		public var map : Map = null;
 		
-		public function GroundTile(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0)
+		//the width and height of this tile
+		public var tileWidth : int = 1;
+		public var tileHeight : int = 1;
+		
+		public function GroundTile(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0, tileWidth : int = 1, tileHeight : int = 1)
 		{
 			this.gridX = x;
 			this.gridY = y;
 			this.map = map;
 			this.groundHeight = groundHeight;
 			this.layer = References.GROUNDTILELAYER;
+			this.tileHeight = tileHeight;
+			this.tileWidth = tileWidth;
 			
 			this.x = gridX * References.TILESIZE + References.TILESIZE / 2;
 			this.y = gridY * References.TILESIZE + References.TILESIZE / 2;
@@ -54,76 +63,138 @@ package entities
 		
 		override public function added():void 
 		{
-			switch (groundHeight) {
-				case 0:
-					this.graphic = new Spritemap(Assets.ABYSS, 40, 40);
-					break
-				case 1:
-					this.graphic = new Spritemap(Assets.MUD, 40, 40);
-					break
-				case 2:
-					this.graphic = new Spritemap(Assets.MUDGRASS, 40, 40);
-					break
-				case 3:
-					this.graphic = new Spritemap(Assets.GRASS, 40, 40);
-					break;
-				case 4:
-					this.graphic = new Spritemap(Assets.ROCKGRASS, 40, 40);
-					break;
-				case 5:
-					this.graphic = new Spritemap(Assets.ROCK, 40, 40);
-					break;
-				case 6:
-					this.graphic = new Spritemap(Assets.SNOW, 40, 40);
-					break;
+			//for every groundtile beneath us
+			for (var i : int = 0 ; i < tileWidth ; i++) {
+				for (var k : int = 0 ; k < tileHeight ; k++) {
+					//we make the groundtile
+					var ngraphic : Spritemap = makeBaseGraphic();
+					//put some shadows on it
+					makeShadow(ngraphic, i, k);
+					//correct the offset
+					ngraphic.originX += i * -40;
+					ngraphic.originY += k * -40;
+					//and it it to our graphicslist
+					addGraphic(ngraphic);
+				}
 			}
-			(this.graphic as Spritemap).centerOrigin();
-			(this.graphic as Spritemap).frame = Math.random() * 4;
-			
-			makeShadow();
-			//(this.graphic as Image).angle = Math.floor(Math.random()*4)*90;
-			//(this.graphic as Image).color = 0x222222 + 0x1D1D1D * (1+groundHeight);//Image.createRect(40, 40, 0x00CC00 - 0x001500 * (1+groundHeight) , 1);
 		}
 		
-		public function makeShadow() : void
+		public function makeBaseGraphic():Spritemap
+		{
+			var ngraphic : Spritemap;
+			switch (groundHeight) {
+				case 0:
+					ngraphic = new Spritemap(Assets.ABYSS, 40, 40);
+					break
+				case 1:
+					ngraphic = new Spritemap(Assets.MUD, 40, 40);
+					break
+				case 2:
+					ngraphic = new Spritemap(Assets.MUDGRASS, 40, 40);
+					break
+				case 3:
+					ngraphic = new Spritemap(Assets.GRASS, 40, 40);
+					break;
+				case 4:
+					ngraphic = new Spritemap(Assets.ROCKGRASS, 40, 40);
+					break;
+				case 5:
+					ngraphic = new Spritemap(Assets.ROCK, 40, 40);
+					break;
+				case 6:
+					ngraphic = new Spritemap(Assets.SNOW, 40, 40);
+					break;
+			}
+			ngraphic.centerOrigin();
+			ngraphic.frame = Math.random() * 4;
+			return ngraphic;
+		}
+		
+		public function makeShadow(ground : Image, i : int, k : int) : void
 		{
 			var shadow : Spritemap = new Spritemap(Assets.SHADOW, 40, 40);
-			var ground : Image = this.graphic as Image;
 			
 			var source : Rectangle = new Rectangle(0, 0, 40, 40);
 			var p : Point = new Point(0, 0);
 			var sp : Point = new Point(0, 0);
 			
 			var tile : GroundTile;
+			var i : int;
 			
 			//the topmost tile;
-			tile = map.getGroundTile(gridX, gridY - 1);
+			tile = map.getGroundTile(gridX + i, gridY - 1 + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(1, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(1, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
 			//the bottom tile;
-			tile = map.getGroundTile(gridX, gridY + 1);
+			tile = map.getGroundTile(gridX + i, gridY + 1 + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(3, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(3, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
 			//the left tile;
-			tile = map.getGroundTile(gridX -1 , gridY);
+			tile = map.getGroundTile(gridX -1 + i , gridY + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(2, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(2, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
-			//the left tile;
-			tile = map.getGroundTile(gridX + 1 , gridY);
+			//the right tile;
+			tile = map.getGroundTile(gridX + 1 + i, gridY + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(0, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(0, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
+			var tile2 : GroundTile, tile3 : GroundTile;
+			
+			//the topleft corner;
+			tile = map.getGroundTile(gridX - 1 + i, gridY + k - 1); // corner
+			tile2 = map.getGroundTile(gridX - 1 + i, gridY + k); //left
+			tile3 = map.getGroundTile(gridX + i, gridY + k - 1); //top
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(6, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			//the botleft corner;
+			tile = map.getGroundTile(gridX - 1 + i, gridY + k + 1); // corner
+			tile2 = map.getGroundTile(gridX - 1 + i, gridY + k); //left
+			tile3 = map.getGroundTile(gridX + i, gridY + k + 1); //bot
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(7, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
+			//the botright corner;
+			tile = map.getGroundTile(gridX + 1 + i, gridY + k + 1); // corner
+			tile2 = map.getGroundTile(gridX + 1 + i, gridY + k); //right
+			tile3 = map.getGroundTile(gridX + i, gridY + k + 1); //bot
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(4, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
+			//the topright corner;
+			tile = map.getGroundTile(gridX + 1 + i, gridY + k - 1); // corner
+			tile2 = map.getGroundTile(gridX + 1 + i, gridY + k); //right
+			tile3 = map.getGroundTile(gridX + i, gridY + k - 1); //top
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(5, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
+		}
+		
+		public function blitShadow(ground : BitmapData, shadow : BitmapData, source : Rectangle, p : Point):void
+		{
+			ground.copyPixels(shadow, source, p, shadow, null, true);
 		}
 		
 		public function getLeftTile():GroundTile

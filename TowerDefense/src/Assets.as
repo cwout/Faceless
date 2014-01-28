@@ -28,6 +28,8 @@ package
 		[Embed(source = "assets/abyss.png")] public static const ABYSS : Class;
 		[Embed(source = "assets/rubble.png")] public static const RUBBLE : Class;
 		[Embed(source = "assets/shadow.png")] public static const SHADOW : Class;
+		[Embed(source = "assets/spawner.png")] public static const SPAWNER : Class;
+		[Embed(source = "assets/castle.png")] public static const CASTLE : Class;
 		
 		//GUI GRAPHICS
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;
@@ -44,6 +46,7 @@ package
 		
 		//----------the levels----------
 		[Embed(source = "assets/levels/TestLevel.oel", mimeType = "application/octet-stream")] public static const LEVEL_TESTLEVEL : Class;
+		[Embed(source = "assets/levels/obstacleCourse.oel", mimeType = "application/octet-stream")] public static const LEVEL_OBSTACLECOURSE : Class;
 	}
 
 }

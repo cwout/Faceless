@@ -47,6 +47,7 @@ package entities.towers
 			//De image van de toren inladen
 			super.added();
 			image = new Image(Assets.BASICTOWER);
+			image.color = 0x1f1f1f * (groundHeight + 2);
 			//De image koppellen
 			addGraphic(image);
 			//Het centrum zetten al centrum van de image
@@ -137,8 +138,8 @@ package entities.towers
 			else
 				image.angle = 180 + ((Math.atan((y - this.y) / (x - this.x))) * FP.DEG);
 			//Als de toren van zijn cooldown af is mag hij schieten
-			if(this.cooldown <= 0) {
-				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, damage, this.groundHeight + 1));
+			if (this.cooldown <= 0) {
+				world.add(new BasicBall((image.scaledWidth / 2), this.x, this.y, image.angle, ballspeed, this.damage, this.groundHeight + 1));
 				//Cooldown resetten
 				this.cooldown = 60;
 			}

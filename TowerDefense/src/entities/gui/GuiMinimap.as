@@ -13,15 +13,20 @@ package entities.gui
 	public class GuiMinimap extends Entity
 	{
 		public var image : Image;
+		private var scaling: int = 4;
 		
 		public function GuiMinimap() 
 		{
-			
 		}
 		
 		override public function added():void 
 		{
+			
 			makeMap();
+			
+			//add overlay for current position
+			FP.world.add(new GuiMinimapCameraOverlay(scaling));
+			
 		}
 		
 		public function makeMap():void
@@ -36,9 +41,10 @@ package entities.gui
 				}
 			}
 			image = new Image(data);
-			image.scale = 4;
+			image.scale = scaling;
 			image.scrollX = 0;
 			image.scrollY = 0;
+			image.alpha = 0.8;
 			this.graphic = image;
 			x = 0;
 			y = FP.height - image.scaledHeight;

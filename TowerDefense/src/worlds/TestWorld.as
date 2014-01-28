@@ -1,7 +1,9 @@
 package worlds 
 {
+	import entities.castle.BasicCastle;
 	import entities.GroundTile;
 	import entities.map.Map;
+	import entities.spawners.BasicSpawner;
 	import entities.testenemy.FirstEnemy;
 	import entities.towers.BasicTower;
 	import net.flashpunk.World;
@@ -18,7 +20,8 @@ package worlds
 	{
 		public var map:Map = new Map();
 		//public var tower: BasicTower = new BasicTower;
-		public var testenemy: FirstEnemy;
+		public var testenemy: BasicSpawner;
+		public var testcastly: BasicCastle;
 		
 		
 		public var done:Boolean = false;
@@ -33,9 +36,6 @@ package worlds
 			//add(tower);
 
 			Gui.initWithMap(this.map);
-			
-			testenemy = new FirstEnemy(Gui.map);
-			add(testenemy);
 		}
 		
 		override public function update():void {
