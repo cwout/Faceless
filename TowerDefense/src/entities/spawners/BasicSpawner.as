@@ -74,7 +74,17 @@ package entities.spawners
 			}
 		}
 		
-		public function canSpawn():Boolean {
+		/**
+		 * check if a object is over the path
+		 * @param	x
+		 * @param	y
+		 * @return
+		 */
+		public function checkPath(x:int, y:int):Boolean {
+			return path.containsPoint(x, y);
+		}
+		
+		public function updatePath():Boolean {
 			var status:Boolean = false;
 			
 			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(xEnd,yEnd));
