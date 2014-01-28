@@ -65,7 +65,7 @@ package entities.testenemy
 		public function calcPath(x:int, y:int):Boolean {
 			var status:Boolean = false;
 			
-			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
+			var p:Path = Pathfinding.pathAstar(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
 			
 			if (p) {
 				path = p;
