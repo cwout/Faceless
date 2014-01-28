@@ -96,11 +96,20 @@ package entities.gui
 					var wasPassable: Boolean = Gui.map.getGroundTile(tileX, tileY).passable;
 					Gui.map.getGroundTile(tileX, tileY).passable = false;
 				
+					//check if enemies still have a path
 					var enemyList : Array = new Array();
 					FP.world.getClass(EnemyTemplate, enemyList);
 					for each (var enemy:EnemyTemplate in enemyList)
 					{
 						pathsExist &&= enemy.updatePath();
+					}
+					
+					//check if spawners aren't blocked from end-point
+					var spawnerList : Array = new Array();
+					FP.world.getClass(BasicSpawner, spawnerList);
+					for each (var spawner: BasicSpawner in spawnerList)
+					{
+						pathsExist &&= spawner.canSpawn();
 					}
 					
 					Gui.map.getGroundTile(tileX, tileY).passable = wasPassable;
