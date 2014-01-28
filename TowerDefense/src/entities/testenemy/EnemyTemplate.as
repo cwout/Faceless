@@ -36,6 +36,8 @@ package entities.testenemy
 		private var bool:Boolean = true;
 		private var endloc:Vector.<int>;
 		
+		private var tileMoved:Number = 0;
+		
 		public function EnemyTemplate(sp:int, img:Class, map:Map,xBegin:int, yBegin:int, xEnd:int, yEnd:int) {
 			set_speed(sp);
 			set_image(img);
@@ -91,19 +93,22 @@ package entities.testenemy
 		 */
 		protected function move():void {
 			setFacing();
-			if (facing != 5){
-				this.x += (this.speed * (Math.cos(this.angle))) * FP.elapsed;
-				this.y += (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+			if (facing != 5) {
+				var dx:Number = (this.speed * (Math.cos(this.angle))) * FP.elapsed;
+				var dy:Number = (this.speed * (Math.sin(this.angle))) * FP.elapsed;
+				this.x += dx;
+				this.y += dy;
+				tileMoved += (dx + dy);
 			}
 			else {
 				if (bool) {
-					setEndLoc(2, 2);
+					setEndLoc(3, 3);
 					updatePath();
 					bool = false;
 				}
 				else {
 					bool = true;
-					setEndLoc(19, 19);
+					setEndLoc(19,19);
 					updatePath();
 				}
 			}
@@ -116,12 +121,23 @@ package entities.testenemy
 		 * Get the real x and y location of the grid
 		 */
 		private function inTileRange():void {
-			var xnew:int = (this.x-this.width/2) / References.TILESIZE;
-			var ynew:int = (this.y-this.height/2) / References.TILESIZE;
-			
-			if (xnew != this.xmap || ynew != this.ymap) {
-				this.xmap = xnew;
-				this.ymap = ynew;
+			if (Math.abs(tileMoved) >= References.TILESIZE) {
+				tileMoved = 0;
+				
+				/**
+				 * get the current location from the path 
+				 */
+				xmap = path.getNextX();
+				ymap = path.getNextY();
+				
+				/**
+				 * reset the x position and y-position
+				 */
+				this.x = References.TILESIZE * xmap + References.TILESIZE / 2;
+				this.y = References.TILESIZE * ymap + References.TILESIZE / 2;
+				/**
+				 * get the next direction to move to
+				 */
 				usePath();
 			}
 		}
@@ -166,7 +182,7 @@ package entities.testenemy
 		 */
 		public function set_position(x:int, y:int):void {
 			//swapped
-			this.x = References.TILESIZE * x + References.TILESIZE/2;
+			this.x = References.TILESIZE * x + References.TILESIZE / 2;
 			this.y = References.TILESIZE * y + References.TILESIZE / 2;
 			this.xmap = x;
 			this.ymap = y;

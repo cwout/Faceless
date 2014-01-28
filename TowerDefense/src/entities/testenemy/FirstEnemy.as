@@ -10,7 +10,7 @@ package entities.testenemy
 		
 		public function FirstEnemy(map:Map) 
 		{
-			super(50, Assets.TestEnemy, map,2,2,19,19);
+			super(50, Assets.TestEnemy, map,3,3,19,19);
 		}
 		
 	}
