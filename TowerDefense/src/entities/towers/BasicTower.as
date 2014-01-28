@@ -47,6 +47,7 @@ package entities.towers
 			//De image van de toren inladen
 			super.added();
 			image = new Image(Assets.BASICTOWER);
+			image.color = 0x1f1f1f * (groundHeight + 2);
 			//De image koppellen
 			addGraphic(image);
 			//Het centrum zetten al centrum van de image

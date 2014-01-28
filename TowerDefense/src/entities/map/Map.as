@@ -1,6 +1,7 @@
 package entities.map 
 {
 	import entities.GroundTile;
+	import entities.spawners.BasicSpawner;
 	import entities.towers.BasicTower;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -25,6 +26,14 @@ package entities.map
 		{
 			name = "map";
 			initializeMap();
+			
+			var tile : GroundTile = getGroundTile(4, 4);
+			var spawner : BasicSpawner = new BasicSpawner(this, 4, 4, tile.groundHeight, 1, 19, 19);
+			
+			setGroundTile(4, 4, spawner);
+			world.add(spawner);
+			world.remove(tile);
+			
 		}
 		
 		/**
