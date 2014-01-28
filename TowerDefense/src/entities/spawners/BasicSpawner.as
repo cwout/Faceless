@@ -40,6 +40,8 @@ package entities.spawners
 			this.interval = interval;
 			this.xEnd = xEnd;
 			this.yEnd = yEnd;
+			passable = false;
+			placeable = false;
 		}
 		
 		override public function added():void {
