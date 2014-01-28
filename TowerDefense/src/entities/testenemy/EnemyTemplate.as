@@ -15,7 +15,9 @@ package entities.testenemy
 	import entities.GroundTile;
 	
 	/**
-	 * ...
+	 * make basic castle point
+	 * make better check path function
+	 * make get path length
 	 * @author Axel Faes
 	 */
 	public class EnemyTemplate extends Entity
@@ -200,6 +202,23 @@ package entities.testenemy
 			this.width = References.TILESIZE * w;
 			this.height = References.TILESIZE * h;
 			resetImg();
+		}
+		
+		/**
+		 * check if a object is over the path
+		 * @param	x
+		 * @param	y
+		 * @return
+		 */
+		public function checkPath(x:int, y:int):Boolean {
+			return path.containsPoint(x, y);
+		}
+		
+		/**
+		 * get the number of tiles still needed to be done
+		 */
+		public function getLength():int {
+			return path.getLength();
 		}
 		
 		/**

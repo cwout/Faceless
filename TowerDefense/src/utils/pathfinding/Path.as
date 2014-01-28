@@ -18,6 +18,19 @@ package utils.pathfinding
 			
 		}
 		
+		public function containsPoint(x:int, y:int):Boolean {
+			var i:int = 0;
+			for (i = currentNode; i < path.length; i++) {
+				if (path[i].gridX == x && path[i].gridY == y)
+					return true;
+			}
+			return false;
+		}
+		
+		public function getLength():int {
+			return path.length - currentNode - 1;
+		}
+		
 		/**
 		 * get the current x position
 		 * uses currentNode-1 because currentNode is the node
