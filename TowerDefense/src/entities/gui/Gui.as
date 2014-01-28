@@ -115,7 +115,7 @@ package entities.gui
 					FP.world.getClass(BasicSpawner, spawnerList);
 					for each (var spawner: BasicSpawner in spawnerList)
 					{
-						pathsExist &&= spawner.canSpawn();
+						//pathsExist &&= spawner.checkPath(tileX, tileY);
 					}
 					
 					Gui.map.getGroundTile(tileX, tileY).passable = wasPassable;

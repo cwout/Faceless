@@ -51,7 +51,7 @@ package entities.spawners
 		}
 		
 		override public function added():void {
-			isPath = canSpawn();
+			isPath = updatePath();
 		}
 		
 		override public function update():void {
