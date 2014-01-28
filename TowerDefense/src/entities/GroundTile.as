@@ -142,12 +142,54 @@ package entities
 				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
-			//the left tile;
+			//the right tile;
 			tile = map.getGroundTile(gridX + 1 + i, gridY + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
 				shadow.setFrame(0, tile.groundHeight - groundHeight - 1);
 				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
+			
+			var tile2 : GroundTile, tile3 : GroundTile;
+			
+			//the topleft corner;
+			tile = map.getGroundTile(gridX - 1 + i, gridY + k - 1); // corner
+			tile2 = map.getGroundTile(gridX - 1 + i, gridY + k); //left
+			tile3 = map.getGroundTile(gridX + i, gridY + k - 1); //top
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(6, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			//the botleft corner;
+			tile = map.getGroundTile(gridX - 1 + i, gridY + k + 1); // corner
+			tile2 = map.getGroundTile(gridX - 1 + i, gridY + k); //left
+			tile3 = map.getGroundTile(gridX + i, gridY + k + 1); //bot
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(7, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
+			//the botright corner;
+			tile = map.getGroundTile(gridX + 1 + i, gridY + k + 1); // corner
+			tile2 = map.getGroundTile(gridX + 1 + i, gridY + k); //right
+			tile3 = map.getGroundTile(gridX + i, gridY + k + 1); //bot
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(4, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
+			//the topright corner;
+			tile = map.getGroundTile(gridX + 1 + i, gridY + k - 1); // corner
+			tile2 = map.getGroundTile(gridX + 1 + i, gridY + k); //right
+			tile3 = map.getGroundTile(gridX + i, gridY + k - 1); //top
+			if (tile != null && tile2 != null && tile3 != null && tile.groundHeight > groundHeight && tile2.groundHeight <= groundHeight && tile3.groundHeight <= groundHeight) {
+				shadow.setFrame(5, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+			}
+			
+			
 		}
 		
 		public function blitShadow(ground : BitmapData, shadow : BitmapData, source : Rectangle, p : Point):void
