@@ -5,6 +5,7 @@ package entities.gui
 	import net.flashpunk.utils.Input;
 	import entities.towers.BasicTower;
 	import entities.testenemy.EnemyTemplate;
+	import entities.spawners.BasicSpawner;
 	
 	/**
 	 * main Gui-class, every other class has to call this one to interact with the GUI

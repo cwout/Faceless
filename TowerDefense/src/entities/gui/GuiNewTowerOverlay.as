@@ -49,9 +49,10 @@ package entities.gui
 			y = (Input.mouseY + FP.camera.y) - ((Input.mouseY + FP.camera.y) % References.TILESIZE) + 20;
 			var tileX: int = (Input.mouseX + FP.camera.x) / References.TILESIZE;
 			var tileY: int = (Input.mouseY + FP.camera.y) / References.TILESIZE;
+			var isPlaceable = Gui.map.getGroundTile(tileX, tileY).placeable;
 			
 			//change overlay color
-			if (Gui.map.getGroundTile(tileX, tileY).placeable)
+			if (isPlaceable)
 				image.color = 0x77FF77;
 			else
 				image.color = 0xFF7777;
@@ -59,7 +60,8 @@ package entities.gui
 			if (Input.mouseReleased)
 			{
 				eventFunction("AddTower");
-				FP.world.remove(this);
+				if (!isPlaceable)
+					FP.world.remove(this);
 			}
 			else if (Input.check(Key.ESCAPE))
 			{
