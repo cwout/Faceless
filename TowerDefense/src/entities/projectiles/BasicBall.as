@@ -25,7 +25,7 @@ package entities.projectiles
 		public var angle: Number;
 		public var ballHeight: int;
 		
-		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damge: Number, givenHeight: int)
+		public function BasicBall(width: Number, x : int, y : int, angle : Number, speed: Number, damage: Number, givenHeight: int)
 		{
 			this.layer = References.PROJECTILELAYER;
 			//De speed updaten naar de gewenste speed (Nodig voor update functie)
@@ -70,8 +70,9 @@ package entities.projectiles
 			FP.world.getClass(EnemyTemplate, enemyList);
 			
 			for each (var enemy:EnemyTemplate in enemyList) {
-				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < 7)
-					hit();
+				if (FP.distance(this.x, this.y, enemy.x, enemy.y) < enemy.image.scaledWidth/2) {
+					hit(enemy);
+				}
 			}
 
 			
@@ -83,7 +84,8 @@ package entities.projectiles
 			FP.world.remove(this);
 		}
 		
-		private function hit(): void {
+		private function hit(enemy:EnemyTemplate): void {
+			enemy.takeDamage(this.damage);
 			die();
 		}
 		

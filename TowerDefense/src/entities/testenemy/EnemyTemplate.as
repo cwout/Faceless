@@ -20,7 +20,7 @@ package entities.testenemy
 	 */
 	public class EnemyTemplate extends Entity
 	{
-		private var image : Image;
+		public var image : Image;
 		public var speed : int;
 		protected var health : Number = 100;
 		private var facing : int = 5;
@@ -41,7 +41,6 @@ package entities.testenemy
 		public function EnemyTemplate(sp:int, img:Class, map:Map,xBegin:int, yBegin:int, xEnd:int, yEnd:int) {
 			set_speed(sp);
 			set_image(img);
-			set_size(1, 1);
 			
 			this.map = map;
 			//sets the end loc
@@ -223,6 +222,7 @@ package entities.testenemy
 		private function resetImg():void {
 			this.image.centerOrigin();
 			set_imgSize(2 / 3);
+			set_size(2 / 3, 2 / 3);
 		}
 		
 		/**
