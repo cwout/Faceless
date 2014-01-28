@@ -35,7 +35,7 @@ package worlds
 
 			Gui.initWithMap(this.map);
 			
-			testenemy = new BasicSpawner(Assets.TestEnemy,Gui.map,1,3,3,19,19);
+			testenemy = new BasicSpawner(Assets.SPAWNER,Gui.map,1,3,3,19,19);
 			add(testenemy);
 		}
 		
