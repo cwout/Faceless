@@ -35,8 +35,8 @@ package worlds
 
 			Gui.initWithMap(this.map);
 			
-			testenemy = new BasicSpawner(Assets.SPAWNER,Gui.map,1,3,3,19,19);
-			add(testenemy);
+			//testenemy = new BasicSpawner(Assets.SPAWNER,Gui.map,1,3,3,19,19);
+			//add(testenemy);
 		}
 		
 		override public function update():void {

@@ -21,7 +21,7 @@ package entities.spawners
 	 * ...
 	 * @author Axel Faes
 	 */
-	public class BasicSpawner extends Entity
+	public class BasicSpawner extends GroundTile
 	{
 		private var interval:Number;
 		private var intervalCounter:Number = 0;
@@ -29,21 +29,13 @@ package entities.spawners
 		private var xEnd:int, yEnd:int;
 		
 		private var image:Image;
-		private var map:Map;
-		
-		private var xmap:int, ymap:int;
 		
 		private var isPath:Boolean;
 		private var path:Path;
 		
-		public function BasicSpawner(img:Class, map:Map, interval:Number,x:int, y:int, xEnd:int, yEnd:int) 
+		public function BasicSpawner(map : Map, x : int = 0, y : int = 0, groundHeight : int = 0, interval:Number = 1, xEnd:int = 20, yEnd:int = 20) 
 		{
-			set_image(img);
-			set_size(1, 1);
-			
-			this.map = map;
-			
-			set_position(x, y);
+			super(map, x, y, groundHeight);
 			
 			this.interval = interval;
 			this.xEnd = xEnd;
@@ -51,6 +43,10 @@ package entities.spawners
 		}
 		
 		override public function added():void {
+			super.added();
+			this.image = new Image(Assets.SPAWNER);
+			image.centerOrigin();
+			addGraphic(image);
 			isPath = updatePath();
 		}
 		
@@ -69,7 +65,7 @@ package entities.spawners
 				var p:Path = new Path();
 				p.path = path.path;
 				
-				var enemy:EnemyTemplate = new FirstEnemy(map, p, xmap ,ymap ,xEnd, yEnd);
+				var enemy:EnemyTemplate = new FirstEnemy(map, p, gridX , gridY,xEnd, yEnd);
 				FP.world.add(enemy);
 			}
 		}
@@ -87,7 +83,7 @@ package entities.spawners
 		public function updatePath():Boolean {
 			var status:Boolean = false;
 			
-			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(xEnd,yEnd));
+			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.gridX, this.gridY), map.getGroundTile(xEnd,yEnd));
 			
 			if (p) {
 				path = p;
@@ -97,57 +93,6 @@ package entities.spawners
 			isPath = status;
 			
 			return status;
-		}
-		
-		/**
-		 * set the original position of the enemy
-		 * @param	x
-		 * @param	y
-		 */
-		public function set_position(x:int, y:int):void {
-			//swapped
-			this.x = References.TILESIZE * x + References.TILESIZE / 2;
-			this.y = References.TILESIZE * y + References.TILESIZE / 2;
-			this.xmap = x;
-			this.ymap = y;
-		}
-		
-		/**
-		 * set the enemy size
-		 * @param	w
-		 * @param	h
-		 */
-		public function set_size(w:int, h:int):void {
-			this.width = References.TILESIZE * w;
-			this.height = References.TILESIZE * h;
-			resetImg();
-		}
-		
-		/**
-		 * set the image for the enemy class
-		 * @param	img
-		 */
-		public function set_image(img:Class):void {
-			this.image = new Image(img);
-			resetImg();
-			this.graphic = image;
-		}
-		
-		/**
-		 * set the image size
-		 */
-		private function resetImg():void {
-			this.image.centerOrigin();
-			set_imgSize(2 / 3);
-		}
-		
-		/**
-		 * set the image size
-		 * @param	nb
-		 */
-		public function set_imgSize(nb:Number):void {
-			this.image.scaledWidth = nb * width;
-			this.image.scaledHeight = nb * height;
 		}
 		
 	}
