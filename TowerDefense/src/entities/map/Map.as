@@ -1,5 +1,6 @@
 package entities.map 
 {
+	import entities.castle.BasicCastle;
 	import entities.GroundTile;
 	import entities.spawners.BasicSpawner;
 	import entities.towers.BasicTower;
@@ -27,12 +28,21 @@ package entities.map
 			name = "map";
 			initializeMap();
 			
+			
+			//test code for spawner
 			var tile : GroundTile = getGroundTile(4, 4);
 			var spawner : BasicSpawner = new BasicSpawner(this, 4, 4, tile.groundHeight, 1, 19, 19);
 			
 			setGroundTile(4, 4, spawner);
 			world.add(spawner);
 			world.remove(tile);
+			
+			//test code for castle
+			tile = getGroundTile(14, 16);
+			var castle : BasicCastle = new BasicCastle(this, 14, 16, tile.groundHeight, 2000);
+			
+			replaceGroundTile(14, 16, castle);
+			world.add(castle);
 			
 		}
 		
@@ -125,11 +135,11 @@ package entities.map
 				
 				var tempTower  : BasicTower = new BasicTower(this, x, y, tile.groundHeight);	
 				
-				FP.world.remove(tile);
+				//FP.world.remove(tile);
 				
 				FP.world.add(tempTower);
 				
-				setGroundTile(x, y, tempTower);
+				replaceGroundTile(x, y, tempTower);
 		}
 		
 		/**
@@ -141,9 +151,21 @@ package entities.map
 			return mapData[x + y * mapWidth];
 		}
 		
+		//sets the groundtile on a position to a new groundtile
 		public function setGroundTile(x : int, y : int, tile : GroundTile) : void
 		{
 			mapData[x + y * mapWidth] = tile;
+		}
+		
+		//sets the groundtile on a position to a new groundtile and removes the old groundtile
+		public function replaceGroundTile(x : int, y : int, tile : GroundTile) : void
+		{
+			for (var i : int = 0 ; i < tile.tileWidth ; i++) {
+				for (var k : int = 0 ; k < tile.tileHeight ; k++) {
+					FP.world.remove(mapData[(x + i) + (y +k) * mapWidth]);
+					mapData[(x + i) + (y +k) * mapWidth] = tile;
+				}
+			}
 		}
 		
 	}

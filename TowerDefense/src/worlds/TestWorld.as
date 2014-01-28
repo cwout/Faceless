@@ -36,17 +36,6 @@ package worlds
 			//add(tower);
 
 			Gui.initWithMap(this.map);
-			
-<<<<<<< HEAD
-			testenemy = new BasicSpawner(Assets.TestEnemy,Gui.map,3,3,3,19,19);
-			add(testenemy);
-			
-			testcastly = new BasicCastle(Assets.BASICTOWER, Gui.map, 15, 15, 2, 2, 2000);
-			add(testcastly);
-=======
-			//testenemy = new BasicSpawner(Assets.SPAWNER,Gui.map,1,3,3,19,19);
-			//add(testenemy);
->>>>>>> a56b659d75a7a37f696d6495ca1464ddd6d23efc
 		}
 		
 		override public function update():void {

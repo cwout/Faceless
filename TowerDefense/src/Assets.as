@@ -29,6 +29,7 @@ package
 		[Embed(source = "assets/rubble.png")] public static const RUBBLE : Class;
 		[Embed(source = "assets/shadow.png")] public static const SHADOW : Class;
 		[Embed(source = "assets/spawner.png")] public static const SPAWNER : Class;
+		[Embed(source = "assets/castle.png")] public static const CASTLE : Class;
 		
 		//GUI GRAPHICS
 		[Embed(source = "assets/MenuTrigger.png")] public static const GUITRIGGER:Class;
