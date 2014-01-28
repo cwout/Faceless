@@ -85,7 +85,7 @@ package entities.spawners
 		public function updatePath():Boolean {
 			var status:Boolean = false;
 			
-			var p:Path = Pathfinding.pathAstar(map.getGroundTile(this.gridX, this.gridY), map.getGroundTile(xEnd,yEnd));
+			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.gridX, this.gridY), map.getGroundTile(xEnd,yEnd));
 			
 			if (p) {
 				path = p;

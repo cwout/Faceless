@@ -32,6 +32,8 @@ package entities.castle
 			super(map, x, y, groundHeight, 2, 2);
 			this.health = health;
 			placeable = false;
+			
+			type = "castle";
 		}
 		
 		override public function added():void {
