@@ -42,6 +42,8 @@ package entities.testenemy
 			set_speed(sp);
 			set_image(img);
 			
+			set_size(1, 1);
+			
 			this.map = map;
 			//sets the end loc
 			setEndLoc(xEnd, yEnd);
@@ -222,7 +224,6 @@ package entities.testenemy
 		private function resetImg():void {
 			this.image.centerOrigin();
 			set_imgSize(2 / 3);
-			set_size(2 / 3, 2 / 3);
 		}
 		
 		/**
