@@ -1,6 +1,7 @@
 package entities 
 {
 	import entities.map.Map;
+	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -118,35 +119,40 @@ package entities
 			var sp : Point = new Point(0, 0);
 			
 			var tile : GroundTile;
+			var i : int;
 			
 			//the topmost tile;
 			tile = map.getGroundTile(gridX + i, gridY - 1 + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(1, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(1, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
 			//the bottom tile;
 			tile = map.getGroundTile(gridX + i, gridY + 1 + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(3, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(3, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
 			//the left tile;
 			tile = map.getGroundTile(gridX -1 + i , gridY + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(2, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(2, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
 			
 			//the left tile;
 			tile = map.getGroundTile(gridX + 1 + i, gridY + k);
 			if (tile != null && tile.groundHeight > groundHeight) {
-				shadow.setFrame(0, 0);
-				ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
+				shadow.setFrame(0, tile.groundHeight - groundHeight - 1);
+				blitShadow(ground._bitmap.bitmapData, shadow._bitmap.bitmapData, source, p);//ground._bitmap.bitmapData.copyPixels(shadow._bitmap.bitmapData, source, p, shadow._bitmap.bitmapData, null, true);
 			}
-			
+		}
+		
+		public function blitShadow(ground : BitmapData, shadow : BitmapData, source : Rectangle, p : Point):void
+		{
+			ground.copyPixels(shadow, source, p, shadow, null, true);
 		}
 		
 		public function getLeftTile():GroundTile

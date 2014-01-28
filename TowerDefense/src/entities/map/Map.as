@@ -107,24 +107,6 @@ package entities.map
 				replaceGroundTile(tilex, tiley, castleTile);
 			}
 			
-			/*for each(var object : XML in xml.Objects.tile) {
-					tilex = parseInt(object.@x);
-					tiley = parseInt(object.@y);
-					var id : int = parseInt(object.@id);
-					var newtile : GroundTile = getGroundTile(tilex, tiley);
-					var newthing : GroundTile;
-					switch (id) {
-						case 0: //0 is ID for a piece of rubble
-							newthing = new Rubble(this, tilex, tiley, newtile.groundHeight);
-							break;
-					}
-					if (newthing != null) {
-						setGroundTile(tilex, tiley, newthing);	
-						world.add(newthing);
-						world.remove(newtile);
-					}	
-			}*/
-			
 			//now we add all maps to the world
 			for (var i : int = 0 ; i < mapWidth * mapHeight ; i++) {
 				FP.world.add(mapData[i] as Entity);
