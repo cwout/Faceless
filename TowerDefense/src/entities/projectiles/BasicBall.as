@@ -76,11 +76,10 @@ package entities.projectiles
 			}
 
 			
-<<<<<<< HEAD
 			if (map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)) == null || map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)).groundHeight > ballHeight)
-=======
+
 			if (map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE))==null || map.getGroundTile((x / References.TILESIZE), (y / References.TILESIZE)).groundHeight > ballHeight)
->>>>>>> 999230334d95f5dcda3e27fa87af26a135260c38
+
 				die();
 		}
 		
