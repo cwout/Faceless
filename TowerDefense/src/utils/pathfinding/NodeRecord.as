@@ -10,6 +10,7 @@ package utils.pathfinding
 		public var node:GroundTile;
 		public var connection:Connection;
 		public var costSoFar:Number = 0;
+		public var estimatedTotalCost:Number = 0;
 			
 		public function NodeRecord() 
 		{

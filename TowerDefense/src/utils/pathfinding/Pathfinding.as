@@ -172,10 +172,98 @@ package utils.pathfinding
 			
 				return path;
 			}
-			
-
 		}
 		
+		public static function heuristicEst(tile:GroundTile, end:GroundTile):Number {
+			return 10*(Math.abs(tile.gridX - end.gridX) + Math.abs(tile.gridY - end.gridY));
+		}
+		
+		/**
+		 * Function to calculate the dijkstra path
+		 */
+		public static function pathAstar(begin:GroundTile, end:GroundTile):Path {
+			var startrecord:NodeRecord;
+			startrecord = new NodeRecord();
+			startrecord.node = begin;
+			
+			startrecord.estimatedTotalCost = heuristicEst(begin, end);
+			
+			var open:Vector.<NodeRecord> = new Vector.<NodeRecord>;
+			open.push(startrecord);
+			var closed:Vector.<NodeRecord> = new Vector.<NodeRecord>;
+			
+			var current:NodeRecord;
+			
+			while (open.length > 0) {
+				current = smallestElement(open);
+				
+				if (current.node == end) {
+					break;
+				}
+				
+				var connections:Vector.<Connection> = getConnections(current);
+				
+				for each(var connection:Connection in connections) {
+					var endNode:GroundTile = connection.toNode;
+					var endNodeCost:int = current.costSoFar + connection.cost;
+					var endNodeHeuristic:int = 0;
+					var endNodeRecord:NodeRecord;
+					
+					if (contains(closed, endNode)) {
+						endNodeRecord = find(closed, endNode);
+						if (endNodeRecord.costSoFar <= endNodeCost) {
+							continue;
+						}
+						removeElem(closed, endNodeRecord);
+						
+						endNodeHeuristic = connection.cost - endNodeRecord.costSoFar;
+					}
+					
+					else if (contains(open, endNode)) {
+						endNodeRecord = find(open, endNode);
+						
+						if (endNodeRecord.costSoFar <= endNodeCost) {
+							continue;
+						}
+						endNodeHeuristic = connection.cost - endNodeRecord.costSoFar;
+					}
+					else {
+						endNodeRecord = new NodeRecord();
+						endNodeRecord.node = endNode;
+						
+						endNodeHeuristic = heuristicEst(endNode, end);
+					}
+
+					endNodeRecord.costSoFar = endNodeCost
+					endNodeRecord.connection = connection
+					
+					endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic;
+					
+					if (!contains(open, endNode)) {
+						open.push(endNodeRecord);
+					}
+				}
+				
+				removeElem(open, current);
+				closed.push(current);
+			}	
+			
+			if (current.node != end) {
+				return null;
+			}
+			else {
+				var path:Path = new Path();
+				
+				while (current.node != begin) {
+					path.path.push(current.node);
+					current = current.connection.fromNode;
+				}
+
+				path.path.reverse();
+			
+				return path;
+			}
+		}
 	}
 
 }
