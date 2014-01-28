@@ -1,5 +1,6 @@
 package worlds 
 {
+	import entities.castle.BasicCastle;
 	import entities.GroundTile;
 	import entities.map.Map;
 	import entities.spawners.BasicSpawner;
@@ -20,6 +21,7 @@ package worlds
 		public var map:Map = new Map();
 		//public var tower: BasicTower = new BasicTower;
 		public var testenemy: BasicSpawner;
+		public var testcastly: BasicCastle;
 		
 		
 		public var done:Boolean = false;
@@ -35,8 +37,11 @@ package worlds
 
 			Gui.initWithMap(this.map);
 			
-			testenemy = new BasicSpawner(Assets.TestEnemy,Gui.map,1,3,3,19,19);
+			testenemy = new BasicSpawner(Assets.TestEnemy,Gui.map,3,3,3,19,19);
 			add(testenemy);
+			
+			testcastly = new BasicCastle(Assets.BASICTOWER, Gui.map, 15, 15, 2, 2, 2000);
+			add(testcastly);
 		}
 		
 		override public function update():void {

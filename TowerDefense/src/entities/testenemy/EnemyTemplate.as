@@ -15,9 +15,7 @@ package entities.testenemy
 	import entities.GroundTile;
 	
 	/**
-	 * make basic castle point
-	 * make better check path function
-	 * make get path length
+	 * Basic template for any enemy
 	 * @author Axel Faes
 	 */
 	public class EnemyTemplate extends Entity
@@ -208,7 +206,7 @@ package entities.testenemy
 		 * check if a object is over the path
 		 * @param	x
 		 * @param	y
-		 * @return
+		 * @return true if the x,y is in path
 		 */
 		public function checkPath(x:int, y:int):Boolean {
 			return path.containsPoint(x, y);
