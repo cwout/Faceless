@@ -94,6 +94,7 @@ package entities.gui
 				if (Gui.map.getGroundTile(tileX, tileY).placeable)
 				{
 					var pathsExist:Boolean = true;
+					var hasPath: Boolean;
 					var wasPassable: Boolean = Gui.map.getGroundTile(tileX, tileY).passable;
 					Gui.map.getGroundTile(tileX, tileY).passable = false;
 				
@@ -102,7 +103,11 @@ package entities.gui
 					FP.world.getClass(EnemyTemplate, enemyList);
 					for each (var enemy:EnemyTemplate in enemyList)
 					{
-						pathsExist &&= enemy.updatePath();
+						hasPath = enemy.checkPath(tileX, tileY);
+						if (!hasPath)
+							pathsExist &&= enemy.updatePath();
+						if (!pathsExist)
+							break;
 					}
 					
 					//check if spawners aren't blocked from end-point
