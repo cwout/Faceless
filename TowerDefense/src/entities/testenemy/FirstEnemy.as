@@ -1,6 +1,7 @@
 package entities.testenemy 
 {
 	import entities.map.Map;
+	import utils.pathfinding.Path;
 	/**
 	 * ...
 	 * @author Axel Faes
@@ -8,9 +9,9 @@ package entities.testenemy
 	public class FirstEnemy extends EnemyTemplate
 	{
 		
-		public function FirstEnemy(map:Map) 
+		public function FirstEnemy(map:Map,p:Path,xBegin:int, yBegin:int, xEnd:int, yEnd:int) 
 		{
-			super(50, Assets.TestEnemy, map,3,3,19,19);
+			super(50, Assets.TestEnemy, map,xBegin, yBegin, xEnd, yEnd, p);
 		}
 		
 	}

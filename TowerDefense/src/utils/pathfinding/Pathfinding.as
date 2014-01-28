@@ -169,6 +169,7 @@ package utils.pathfinding
 				}
 
 				path.path.reverse();
+			
 				return path;
 			}
 			

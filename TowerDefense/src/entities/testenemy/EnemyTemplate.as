@@ -23,7 +23,7 @@ package entities.testenemy
 		public var image : Image;
 		public var speed : int;
 		protected var health : Number = 100;
-		private var facing : int = 5;
+		private var facing : int = 6;
 		public var angle : Number = 180 * FP.RAD;
 		
 		private var map:Map;
@@ -38,7 +38,7 @@ package entities.testenemy
 		
 		private var tileMoved:Number = 0;
 		
-		public function EnemyTemplate(sp:int, img:Class, map:Map,xBegin:int, yBegin:int, xEnd:int, yEnd:int) {
+		public function EnemyTemplate(sp:int, img:Class, map:Map,xBegin:int, yBegin:int, xEnd:int, yEnd:int, p:Path) {
 			set_speed(sp);
 			set_image(img);
 			
@@ -49,12 +49,14 @@ package entities.testenemy
 			setEndLoc(xEnd, yEnd);
 			//set the begin loc
 			set_position(xBegin, yBegin);
+			
+			path = p;
 		}
 		
 		override public function added():void {
 			this.layer = References.ENEMYLAYER;
 
-			updatePath();
+			usePath();	
 		}
 		
 		/**
@@ -64,7 +66,7 @@ package entities.testenemy
 			var status:Boolean = false;
 			
 			var p:Path = Pathfinding.pathDijkstra(map.getGroundTile(this.xmap, this.ymap), map.getGroundTile(x,y));
-					
+			
 			if (p) {
 				path = p;
 				status = true;
