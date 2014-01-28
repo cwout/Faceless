@@ -28,7 +28,7 @@ package entities.map
 			name = "map";
 			initializeMap();
 			
-			
+			/*
 			//test code for spawner
 			var tile : GroundTile = getGroundTile(4, 4);
 			var spawner : BasicSpawner = new BasicSpawner(this, 4, 4, tile.groundHeight, 1, 19, 19);
@@ -42,7 +42,7 @@ package entities.map
 			var castle : BasicCastle = new BasicCastle(this, 14, 16, tile.groundHeight, 2000);
 			
 			replaceGroundTile(14, 16, castle);
-			world.add(castle);
+			world.add(castle);*/
 			
 		}
 		
@@ -51,7 +51,7 @@ package entities.map
 		 */
 		public function initializeMap():void
 		{
-			parseMap(Assets.LEVEL_TESTLEVEL);
+			parseMap(Assets.LEVEL_OBSTACLECOURSE);
 		}
 		
 		public function parseMap(map : Class):void
@@ -69,18 +69,45 @@ package entities.map
 			
 			//for each tile in the xml file
 			for each (var tile : XML in xml.MapData.tile) {
-					//we get the x and y coordinates
-					var tilex : int = parseInt(tile.@x);
-					var tiley : int = parseInt(tile.@y);
-					
-					//we create a new groundtile
-					var groundTile : GroundTile = new GroundTile(this, tilex, tiley, parseInt(tile.@id));
-					
-					//and put them in the array
-					mapData[tilex + tiley * mapWidth] = groundTile;	
+				//we get the x and y coordinates
+				var tilex : int = parseInt(tile.@x);
+				var tiley : int = parseInt(tile.@y);
+				
+				//we create a new groundtile
+				var groundTile : GroundTile = new GroundTile(this, tilex, tiley, parseInt(tile.@id));
+				
+				//and put them in the array
+				mapData[tilex + tiley * mapWidth] = groundTile;	
 			}
 			
-			for each(var object : XML in xml.Objects.tile) {
+			//we add the rubble
+			for each (var rubble : XML in xml.Objects.Rubble) {
+				tilex = parseInt(rubble.@x) / 40;
+				tiley = parseInt(rubble.@y) / 40;
+				var oldtile : GroundTile = getGroundTile(tilex, tiley);
+				var rubbletile : Rubble = new Rubble(this, tilex, tiley, oldtile.groundHeight);
+				replaceGroundTile(tilex, tiley, rubbletile);
+			}
+			
+			//we add the spawners
+			for each (var spawner : XML in xml.Objects.Spawner) {
+				tilex = parseInt(spawner.@x) / 40;
+				tiley = parseInt(spawner.@y) / 40;
+				oldtile = getGroundTile(tilex, tiley);
+				var spawnertile : BasicSpawner = new BasicSpawner(this, tilex, tiley, oldtile.groundHeight, parseInt(spawner.@Interval), parseInt(spawner.@GoalX), parseInt(spawner.@GoalY));
+				replaceGroundTile(tilex, tiley, spawnertile);
+			}
+			
+			//we add the castle
+			for each (var castle : XML in xml.Objects.Castle) {
+				tilex = parseInt(castle.@x) / 40;
+				tiley = parseInt(castle.@y) / 40;
+				oldtile = getGroundTile(tilex, tiley);
+				var castleTile : BasicCastle = new BasicCastle(this, tilex, tiley, oldtile.groundHeight, parseInt(castle.@Health));
+				replaceGroundTile(tilex, tiley, castleTile);
+			}
+			
+			/*for each(var object : XML in xml.Objects.tile) {
 					tilex = parseInt(object.@x);
 					tiley = parseInt(object.@y);
 					var id : int = parseInt(object.@id);
@@ -92,11 +119,12 @@ package entities.map
 							break;
 					}
 					if (newthing != null) {
-						setGroundTile(tilex, tiley, newthing);
+						setGroundTile(tilex, tiley, newthing);	
 						world.add(newthing);
 						world.remove(newtile);
 					}	
-			}
+			}*/
+			
 			//now we add all maps to the world
 			for (var i : int = 0 ; i < mapWidth * mapHeight ; i++) {
 				FP.world.add(mapData[i] as Entity);

@@ -46,6 +46,7 @@ package
 		
 		//----------the levels----------
 		[Embed(source = "assets/levels/TestLevel.oel", mimeType = "application/octet-stream")] public static const LEVEL_TESTLEVEL : Class;
+		[Embed(source = "assets/levels/obstacleCourse.oel", mimeType = "application/octet-stream")] public static const LEVEL_OBSTACLECOURSE : Class;
 	}
 
 }
